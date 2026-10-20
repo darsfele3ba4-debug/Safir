@@ -62,7 +62,7 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pill.score{background:var(--gold-l);border-color:var(--gold);color:#7a5600}
 
 .qbox{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:3px solid var(--gold);border-radius:16px;padding:12px 14px;margin-bottom:10px}
-.q-text{flex:1;min-width:0;overflow:hidden;white-space:nowrap;font-weight:800;font-size:26px;text-align:center;line-height:1.35}
+.q-text{flex:1;min-width:0;white-space:normal;overflow-wrap:break-word;font-weight:800;font-size:26px;text-align:center;line-height:1.35}
 .spk{flex-shrink:0;width:46px;height:46px;border-radius:50%;border:none;background:var(--gold);color:var(--navy);font-size:1.2rem;cursor:pointer;box-shadow:0 3px 0 var(--gold-d)}
 .spk:active{transform:translateY(3px);box-shadow:none}
 .spk.sm{width:34px;height:34px;font-size:.9rem}
@@ -203,7 +203,7 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .tpanel.t0{--tc:#2563eb;--ts:#eff6ff}.tpanel.t1{--tc:#ea580c;--ts:#fff7ed}
 .tp-head{display:flex;justify-content:space-between;align-items:center;background:var(--tc);color:#fff;border-radius:10px;padding:6px 12px;font-weight:800;margin-bottom:8px}
 .tqbox{display:flex;align-items:center;gap:8px;background:#fff;border-radius:12px;padding:8px;margin-bottom:8px;border:2px solid var(--tc)}
-.tq-text{flex:1;min-width:0;overflow:hidden;white-space:nowrap;font-weight:800;font-size:20px;line-height:1.35}
+.tq-text{flex:1;min-width:0;white-space:normal;overflow-wrap:break-word;font-weight:800;font-size:20px;line-height:1.35}
 .topts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .topt{background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:12px 6px;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #cbd5e1;touch-action:manipulation;user-select:none}
 .topt.correct{background:var(--success);color:#fff;border-color:var(--success)}
@@ -302,6 +302,9 @@ body.compact .container{margin:10px auto;padding:8px}
   .big-msg{font-size:1.9rem}
   .pill{padding:4px 10px;font-size:.85rem}
   .topbar h3{font-size:.95rem}
+  .spk{width:38px;height:38px}
+  .qbox{padding:10px}
+  .tqbox{padding:6px}
 }
 </style>
 </head>
@@ -513,13 +516,13 @@ function onTap(el, fn) {
   if (window.PointerEvent) el.addEventListener('pointerdown', e => { e.preventDefault(); fn(); });
   else { el.addEventListener('touchstart', e => { e.preventDefault(); fn(); }, { passive: false }); el.addEventListener('mousedown', fn); }
 }
-// keeps the question on ONE line by shrinking the font to fit the width
-function fitLine(el, max, min) {
-  max = max || 26; min = min || 12;
-  el.style.whiteSpace = 'nowrap';
+// shrinks the question font until it fits inside the box (max `lines` lines), so nothing gets cut off
+function fitLine(el, max, min, lines) {
+  max = max || 26; min = min || 14; lines = lines || 2;
+  el.style.whiteSpace = 'normal';
   for (let fs = max; fs >= min; fs--) {
     el.style.fontSize = fs + 'px';
-    if (el.scrollWidth <= el.clientWidth + 1) return;
+    if (el.offsetHeight <= Math.ceil(fs * 1.35 * lines) + 4) return;
   }
 }
 function buildQ(t) {
@@ -968,7 +971,7 @@ function tugShow(t) {
   if (t.idx >= t.qs.length) { t.done = true; p.classList.add('done'); if (G.teams.every(x => x.done)) later(endTug, 800); return; }
   const q = t.qs[t.idx];
   p.querySelector('.tqn').innerText = t.idx + 1;
-  const qt = p.querySelector('.tq-text'); qt.textContent = q.q; fitLine(qt, 20, 11);
+  const qt = p.querySelector('.tq-text'); qt.textContent = q.q; fitLine(qt, 20, 13, 3);
   p.querySelector('.tfb').innerHTML = '';
   const box = p.querySelector('.topts'); box.innerHTML = '';
   q.options.forEach(o => { const b = document.createElement('button'); b.className = 'topt'; b.textContent = o; onTap(b, () => tugPick(t, o, b)); box.appendChild(b); });
@@ -1047,7 +1050,7 @@ function sendTugResult() {
 /* keep questions on one line when the screen size changes */
 window.addEventListener('resize', () => {
   const qt = $('q-text'); if (qt && qt.textContent) fitLine(qt, window.innerWidth < 600 ? 22 : 28);
-  document.querySelectorAll('.tq-text').forEach(el => fitLine(el, 20, 11));
+  document.querySelectorAll('.tq-text').forEach(el => fitLine(el, 20, 13, 3));
 });
 </script>
 </body>
