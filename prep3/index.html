@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3", "unit_en": "Unit 1: Personal Identity", "unit_ar": "الوحدة الأولى: الهوية الشخصية", "vocab": [["background", "خلفية"], ["popularity", "شهرة"], ["self-discovery", "اكتشاف الذات"], ["identity", "هوية"], ["support", "دعم"], ["growth", "نمو"], ["individuality", "فردية"], ["confidence", "ثقة"], ["strength", "قوة"], ["challenges", "تحديات"], ["competition", "منافسة"], ["qualities", "صفات"], ["kindness", "لطف"], ["beliefs", "معتقدات"], ["explanation", "شرح"], ["sketches", "رسومات"], ["decision", "قرار"], ["portrait", "لوحة شخصية"], ["self-respect", "احترام الذات"], ["community", "مجتمع"], ["experiences", "تجارب"], ["realness", "واقعية"], ["adjusting", "تعديل"], ["worth", "قيمة"], ["truth", "الحقيقة"], ["trash", "مهملات"], ["honesty", "صدق"], ["concrete", "ملموس"], ["environment", "بيئة"], ["attitude", "اتجاه / سلوك"], ["value", "قيمة"], ["fairness", "عدل"], ["character", "شخصية"], ["personality", "شخصية"], ["overcome", "يتغلب على"], ["unique", "فريد"], ["stressed", "متوتر"], ["confident", "واثق"], ["honest", "صادق"], ["depressing", "محبط"], ["curious", "فضولي"], ["visual", "مرئي"], ["outgoing", "منفتح"], ["confused", "مرتبك"], ["affect", "يؤثر في"], ["shape", "يشكل"], ["succeed", "ينجح"], ["gain", "يكسب"], ["volunteer", "يتطوع"], ["connect", "يتصل"], ["believe", "يصدق"], ["repair", "يصلح"], ["panic", "يذعر"], ["break", "يكسر"], ["make", "يصنع"], ["feel", "يشعر"], ["leave", "يغادر"], ["throw", "يرمي"], ["bring", "يحضر"], ["begin", "يبدأ"], ["find", "يجد"], ["grow", "ينمو"], ["stay", "يبقى"], ["pass", "يجتاز"]], "questions": [{"q": "It's Ahmed's first day in a new school and he can't fit _____ easily.", "ans": "in", "wrong": ["on", "at", "for"], "ar": "إنه أول يوم لأحمد في مدرسة جديدة ولا يستطيع أن يندمج بسهولة."}, {"q": "_____ means who a person is.", "ans": "Identity", "wrong": ["Background", "Value", "Worth"], "ar": "الهوية تعني من هو الشخص."}, {"q": "The suffix \"-ity\" changes the adjective \"responsible\" into a/an _____.", "ans": "noun", "wrong": ["verb", "adjective", "adverb"], "ar": "المقطع -ity يحول الصفة responsible إلى اسم."}, {"q": "_____ means learning more about who you are.", "ans": "Self-discovery", "wrong": ["Curiosity", "Resilience", "Popularity"], "ar": "اكتشاف الذات يعني التعرف أكثر على من أنت."}, {"q": "He looked at himself in the _____ before going out of the house.", "ans": "mirror", "wrong": ["sketchbook", "glasses", "wood"], "ar": "نظر إلى نفسه في المرآة قبل أن يخرج من البيت."}, {"q": "Yasser is very outgoing and loves meeting new people. \"Outgoing\" is an antonym for _____.", "ans": "shy", "wrong": ["extrovert", "happy", "outstanding"], "ar": "ياسر منفتح جدا ويحب مقابلة أشخاص جدد. عكس outgoing هو shy، أي خجول."}, {"q": "Nada is very outgoing and loves meeting new people. \"Outgoing\" is a synonym for _____.", "ans": "extrovert", "wrong": ["introvert", "outstanding", "shy"], "ar": "ندى منفتحة جدا. مرادف outgoing هو extrovert، أي الاجتماعي."}, {"q": "The girl is _____ the front row.", "ans": "in", "wrong": ["on", "off", "over"], "ar": "الفتاة في الصف الأمامي."}, {"q": "The artist painted a beautiful _____ of the queen.", "ans": "portrait", "wrong": ["forest", "journey", "machine"], "ar": "رسم الفنان لوحة شخصية جميلة للملكة."}, {"q": "Honesty has a great _____ in our lives.", "ans": "value", "wrong": ["color", "weather", "noise"], "ar": "للصدق قيمة كبيرة في حياتنا."}, {"q": "Ahmed showed his teacher some quick _____ of animals.", "ans": "sketches", "wrong": ["games", "bags", "maps"], "ar": "أرى أحمد معلمه بعض الرسومات السريعة للحيوانات."}, {"q": "The little boy was _____ to know what was inside the box.", "ans": "curious", "wrong": ["hungry", "sleepy", "tired"], "ar": "كان الولد الصغير فضوليا ليعرف ما بداخل الصندوق."}, {"q": "His _____ grew after he scored three goals in the final match.", "ans": "confidence", "wrong": ["weakness", "curiosity", "depression"], "ar": "ازدادت ثقته بنفسه بعد أن سجل ثلاثة أهداف في المباراة النهائية."}, {"q": "These beliefs _____ my character and help me know what's right.", "ans": "shape", "wrong": ["share", "shade", "chop"], "ar": "هذه المعتقدات تشكل شخصيتي وتساعدني على معرفة الصواب."}, {"q": "Ibrahim stood in front of the mirror, _____ his clothes for the fifth time.", "ans": "adjusting", "wrong": ["cutting", "buying", "speaking"], "ar": "وقف إبراهيم أمام المرآة يعدل ملابسه للمرة الخامسة."}, {"q": "We add the prefix _____ to give the opposite of \"patient\".", "ans": "im-", "wrong": ["in-", "il-", "un-"], "ar": "نضيف البادئة im- لنعطي عكس patient."}, {"q": "He was very delighted after the match. The antonym of \"delighted\" is _____.", "ans": "depressed", "wrong": ["happy", "glad", "pleased"], "ar": "كان سعيدا جدا بعد المباراة. عكس delighted هو depressed، أي محبط."}, {"q": "People usually _____ those who do something useful like scientists.", "ans": "value", "wrong": ["discourage", "annoy", "damage"], "ar": "الناس عادة يقدرون من يقدمون شيئا مفيدا مثل العلماء."}, {"q": "A journalist needs to be _____ to look for new news.", "ans": "curious", "wrong": ["indifferent", "kind", "lazy"], "ar": "الصحفي يحتاج أن يكون فضوليا ليبحث عن أخبار جديدة."}, {"q": "Sama's _____ helps her overcome different situations.", "ans": "strength", "wrong": ["weakness", "curiosity", "popularity"], "ar": "قوة سماء تساعدها على تجاوز المواقف المختلفة."}, {"q": "Being a talented programmer, Rodina soon became _____ in the world of digital technology.", "ans": "popular", "wrong": ["self-respect", "unpopular", "unknown"], "ar": "بصفتها مبرمجة موهوبة، أصبحت رودينا مشهورة قريبا في عالم التكنولوجيا الرقمية."}, {"q": "So much homework usually makes students feel _____.", "ans": "stressed", "wrong": ["happy", "glad", "pleased"], "ar": "كثرة الواجبات عادة تجعل الطلاب يشعرون بالتوتر."}, {"q": "\"_____\" means where someone comes from.", "ans": "Background", "wrong": ["Adjusting", "Confident", "Curious"], "ar": "الخلفية تعني المكان الذي جاء منه الشخص."}, {"q": "\"_____\" means changing something a little to make it better.", "ans": "Adjusting", "wrong": ["Damaging", "Background", "Curious"], "ar": "التعديل يعني تغيير شيء قليلا ليصبح أفضل."}, {"q": "The synonym of the word \"popular\" is _____.", "ans": "common", "wrong": ["different", "unavailable", "unusual"], "ar": "مرادف popular هو common، أي شائع."}, {"q": "To get the noun of the word \"fair\", we add the suffix _____.", "ans": "-ness", "wrong": ["-ition", "-ment", "-ion"], "ar": "لنحصل على اسم من الكلمة fair نضيف المقطع -ness."}, {"q": "We form the opposite of \"sure\" when we add the prefix _____.", "ans": "un-", "wrong": ["re-", "im-", "dis-"], "ar": "نكوّن عكس sure بإضافة البادئة un-."}, {"q": "The antonym of the word \"stressed\" is _____.", "ans": "relaxed", "wrong": ["dangerous", "hard", "nervous"], "ar": "عكس stressed هو relaxed، أي مسترخ."}, {"q": "To get the adjective of the word \"digit\", we add the suffix _____.", "ans": "-al", "wrong": ["-ive", "-able", "-ous"], "ar": "لنحصل على صفة من الكلمة digit نضيف المقطع -al."}, {"q": "We add the suffix _____ to get the noun from the verb \"connect\".", "ans": "-ion", "wrong": ["-ment", "-ness", "-ity"], "ar": "لنحصل على اسم من الفعل connect نضيف المقطع -ion."}, {"q": "The synonym of the word \"honest\" is _____.", "ans": "truthful", "wrong": ["stupid", "upset", "intelligent"], "ar": "مرادف honest هو truthful، أي صادق."}, {"q": "The words \"public\" and \"private\" are _____.", "ans": "antonyms", "wrong": ["synonyms", "the same", "suffixes"], "ar": "كلمتا public و private متضادتان."}, {"q": "The antonym of the word \"support\" is _____.", "ans": "oppose", "wrong": ["help", "assist", "display"], "ar": "عكس support هو oppose، أي يعارض."}, {"q": "I think this street is quiet. The synonym of \"quiet\" is _____.", "ans": "calm", "wrong": ["noisy", "harmful", "helpless"], "ar": "مرادف quiet هو calm، أي هادئ."}, {"q": "The antonym of the word \"positive\" is _____.", "ans": "negative", "wrong": ["active", "optimistic", "outgoing"], "ar": "عكس positive هو negative، أي سلبي."}, {"q": "If something is _____, it makes you sad.", "ans": "depressing", "wrong": ["positive", "optimistic", "outgoing"], "ar": "إذا كان شيء ما محبطا، فإنه يجعلك حزينا."}, {"q": "\"_____\" means good enough to deserve the time, effort, or money.", "ans": "Worth", "wrong": ["Proud", "Worse", "Honest"], "ar": "القيمة تعني جيد بما يكفي ليستحق الوقت والجهد أو المال."}, {"q": "She _____ home yet.", "ans": "has arrived", "wrong": ["arrives", "arrived", "is arriving"], "ar": "هي لم تصل إلى المنزل بعد."}, {"q": "She _____ ice cream already.", "ans": "has eaten", "wrong": ["eats", "ate", "is eating"], "ar": "لقد أكلت الآيس كريم بالفعل."}, {"q": "I have studied English _____ 2015.", "ans": "since", "wrong": ["for", "ago", "during"], "ar": "أنا أدرس الإنجليزية منذ عام ٢٠١٥."}, {"q": "She has lived in Cairo _____ ten years.", "ans": "for", "wrong": ["since", "ago", "during"], "ar": "هي تعيش في القاهرة منذ عشر سنوات."}, {"q": "We haven't cooked lunch _____.", "ans": "yet", "wrong": ["already", "ever", "just"], "ar": "نحن لم نطبخ الغداء بعد."}, {"q": "My uncle _____ in England for ten years.", "ans": "has lived", "wrong": ["lives", "lived", "is living"], "ar": "عمي يعيش في إنجلترا منذ عشر سنوات."}, {"q": "Have you ever _____ Chinese food?", "ans": "eaten", "wrong": ["eat", "ate", "eating"], "ar": "هل سبق أن أكلت الطعام الصيني؟"}, {"q": "They have never _____ by plane.", "ans": "travelled", "wrong": ["travel", "travels", "traveling"], "ar": "هم لم يسافروا بالطائرة أبدا."}, {"q": "Mona has _____ the house.", "ans": "cleaned", "wrong": ["clean", "cleans", "cleaning"], "ar": "منى نظفت المنزل."}, {"q": "I haven't _____ a lion.", "ans": "seen", "wrong": ["see", "saw", "seeing"], "ar": "أنا لم أرَ أسدا من قبل."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +

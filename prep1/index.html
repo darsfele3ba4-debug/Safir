@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1", "unit_en": "Unit 1: Life in a Digital World", "unit_ar": "الوحدة الأولى: الحياة في عالم رقمي", "vocab": [["screen", "شاشة"], ["eBooks", "كتب إلكترونية"], ["night mode", "الوضع الليلي"], ["search", "بحث"], ["website", "موقع إلكتروني"], ["tablet", "تابلت"], ["laptop", "لابتوب"], ["technology", "تكنولوجيا"], ["device", "جهاز"], ["tools", "أدوات"], ["settings", "إعدادات"], ["platform", "منصة"], ["message", "رسالة"], ["energy", "طاقة"], ["smartboard", "سبورة ذكية"], ["social media", "مواقع التواصل"], ["keyboard", "لوحة مفاتيح"], ["headphones", "سماعات أذن"], ["webcam", "كاميرا ويب"], ["microphone", "ميكروفون"], ["language", "لغة"], ["printer", "طابعة"], ["assignment", "واجب مدرسي"], ["presentation", "عرض تقديمي"], ["challenge", "تحد"], ["tasks", "مهام"], ["noticeboard", "لوحة إعلانات"], ["announcement", "إعلان"], ["responsibility", "مسئولية"], ["puzzle", "لغز"], ["clue", "دليل"], ["routine", "روتين"], ["nationality", "جنسية"], ["slogan", "شعار"], ["encourage", "يشجع"], ["digital", "رقمي"], ["shy", "خجول"], ["smart", "ذكي"], ["online", "متصل بالإنترنت"], ["interactive", "تفاعلي"], ["useful", "مفيد"], ["helpful", "مساعد"], ["magical", "ساحر"], ["cheerful", "مرح"], ["curious", "فضولي"], ["eye-catching", "جذاب"], ["personal", "شخصي"], ["share", "يشارك"], ["click", "ينقر"], ["record", "يسجل"], ["collaborate", "يتعاون"], ["remind", "يذكّر"], ["connect", "يتصل"], ["protect", "يحمي"], ["check", "يتحقق من"], ["send", "يرسل"], ["spend", "يقضي"], ["show", "يعرض"], ["download", "يحمّل"], ["include", "يشمل"], ["mystery", "غموض"]], "questions": [{"q": "Eating while looking at something on my _____ is a bad habit.", "ans": "screen", "wrong": ["oven", "table", "school"], "ar": "الأكل وأنا أنظر إلى شيء على شاشتي عادة سيئة."}, {"q": "In the evening, I sometimes play online _____ with my friend.", "ans": "games", "wrong": ["tablets", "boards", "books"], "ar": "في المساء، أحيانا ألعب ألعابا على الإنترنت مع صديقي."}, {"q": "The _____ is a darker screen setting to protect your eyes in low light.", "ans": "night mode", "wrong": ["evening mode", "afternoon mode", "morning mode"], "ar": "الوضع الليلي إعداد للشاشة أغمق لحماية عينيك في الإضاءة الخافتة."}, {"q": "Our teachers show us videos about planets using the _____ in class.", "ans": "smartboard", "wrong": ["ebook", "book", "website"], "ar": "معلمونا يعرضون علينا فيديوهات عن الكواكب باستخدام السبورة الذكية في الفصل."}, {"q": "I usually use my tablet to _____ for news every morning.", "ans": "search", "wrong": ["find", "get", "see"], "ar": "أنا عادة أستخدم التابلت للبحث عن الأخبار كل صباح."}, {"q": "Can you remind me of the deadline? The word \"remind\" here is a/an _____.", "ans": "verb", "wrong": ["adverb", "adjective", "noun"], "ar": "هل تذكرني بالموعد النهائي؟ كلمة remind هنا فعل."}, {"q": "A/An _____ is a page on the internet that gives information or lets you do things online.", "ans": "website", "wrong": ["tablet", "app", "TV"], "ar": "الموقع الإلكتروني صفحة على الإنترنت تعطي معلومات أو تتيح لك القيام بأشياء أونلاين."}, {"q": "A _____ is an interactive board used in classrooms.", "ans": "smartboard", "wrong": ["whiteboard", "tablet", "blackboard"], "ar": "السبورة الذكية لوحة تفاعلية تستخدم في الفصول."}, {"q": "To make a video call with my friends online, I use the _____.", "ans": "webcam", "wrong": ["headphones", "printer", "speaker"], "ar": "لعمل مكالمة فيديو مع أصدقائي أونلاين، أستخدم كاميرا الويب."}, {"q": "Our teacher showed us amazing videos. The word \"amazing\" is a/an _____.", "ans": "adjective", "wrong": ["verb", "adverb", "noun"], "ar": "كلمة amazing صفة."}, {"q": "My favorite _____ has lots of useful information for students.", "ans": "website", "wrong": ["tablet", "TV", "radio station"], "ar": "موقعي المفضل به معلومات كثيرة ومفيدة للطلاب."}, {"q": "A/An _____ is a flat surface on which pictures or words are shown.", "ans": "screen", "wrong": ["ebook", "smartboard", "blackboard"], "ar": "الشاشة سطح مسطح تظهر عليه الصور أو الكلمات."}, {"q": "I use the _____ to record a presentation.", "ans": "microphone", "wrong": ["headphones", "keyboard", "speaker"], "ar": "أستخدم الميكروفون لتسجيل عرض تقديمي."}, {"q": "What technology do you use every day? The word \"technology\" is a/an _____.", "ans": "noun", "wrong": ["verb", "adverb", "adjective"], "ar": "كلمة technology اسم."}, {"q": "I often read my _____ on my tablet.", "ans": "ebooks", "wrong": ["books", "images", "photos"], "ar": "أنا كثيرا ما أقرأ الكتب الإلكترونية على التابلت."}, {"q": "A _____ is a portable computer.", "ans": "laptop", "wrong": ["screen", "smartboard", "website"], "ar": "اللابتوب كمبيوتر محمول."}, {"q": "I use the _____ to write my assignment.", "ans": "keyboard", "wrong": ["headphones", "microphone", "speaker"], "ar": "أستخدم لوحة المفاتيح لكتابة واجبي."}, {"q": "We can _____ our emails with a phrase like: \"Write back soon!\"", "ans": "end", "wrong": ["start", "pause", "continue"], "ar": "يمكننا إنهاء رسائلنا الإلكترونية بعبارة مثل: اكتب قريبا!"}, {"q": "You should be kind and _____ when you sit in a roundtable.", "ans": "respect", "wrong": ["respects", "respectful", "respected"], "ar": "يجب أن تكون لطيفا وتحترم الآخرين عندما تجلس في حلقة نقاش."}, {"q": "Students work together to design an _____ poster.", "ans": "eye-catching", "wrong": ["eye-catch", "eye-catcher", "eye-caught"], "ar": "يعمل الطلاب معا لتصميم ملصق جذاب."}, {"q": "After school, I often go _____ searching for information.", "ans": "online", "wrong": ["offline", "inline", "in a line"], "ar": "بعد المدرسة، أذهب غالبا إلى الإنترنت للبحث عن المعلومات."}, {"q": "I am writing this email to tell you about my _____ day.", "ans": "digital", "wrong": ["digit", "digits", "digitable"], "ar": "أكتب لك هذه الرسالة لأخبرك عن يومي الرقمي."}, {"q": "A _____ is a device used for printing texts or images on paper.", "ans": "printer", "wrong": ["mouse", "keyboard", "board"], "ar": "الطابعة جهاز يستخدم لطباعة النصوص أو الصور على الورق."}, {"q": "_____ means feeling interested in learning and knowing.", "ans": "Curious", "wrong": ["Responsible", "Ugly", "Sad"], "ar": "فضولي تعني الشعور بالاهتمام بالتعلم والمعرفة."}, {"q": "_____ are online platforms where people connect and share content.", "ans": "Social media", "wrong": ["Ebooks", "Books", "Laptops"], "ar": "مواقع التواصل الاجتماعي منصات إلكترونية يتواصل فيها الناس ويشاركون المحتوى."}, {"q": "A _____ is a device that produces sound from a computer or phone.", "ans": "speaker", "wrong": ["mouse", "printer", "keyboard"], "ar": "السماعة جهاز ينتج صوتا من الكمبيوتر أو الهاتف."}, {"q": "A _____ is something that is difficult and tests one's ability.", "ans": "challenge", "wrong": ["message", "platform", "device"], "ar": "التحدي شيء صعب يختبر قدرة الإنسان."}, {"q": "Something _____ means using computer technology or electronic devices.", "ans": "digital", "wrong": ["useful", "natural", "local"], "ar": "رقمي تعني استخدام تكنولوجيا الكمبيوتر أو الأجهزة الإلكترونية."}, {"q": "A _____ is a device used to type letters, numbers, and commands into a computer.", "ans": "keyboard", "wrong": ["mouse", "printer", "board"], "ar": "لوحة المفاتيح جهاز يستخدم لكتابة الحروف والأرقام والأوامر في الكمبيوتر."}, {"q": "A _____ person is a happy and positive one.", "ans": "cheerful", "wrong": ["responsible", "curious", "sad"], "ar": "الشخص المرح سعيد وإيجابي."}, {"q": "_____ is the time you spend using devices like phones or computers.", "ans": "Screen time", "wrong": ["Time screen", "Free time"], "ar": "وقت الشاشة هو الوقت الذي تقضيه في استخدام الأجهزة مثل الهاتف والكمبيوتر."}, {"q": "A _____ is a device used for recording sound.", "ans": "microphone", "wrong": ["mouse", "printer", "keyboard"], "ar": "الميكروفون جهاز يستخدم لتسجيل الصوت."}, {"q": "My father is a kind teacher. The word \"kind\" is a/an _____.", "ans": "adjective", "wrong": ["verb", "pronoun", "adverb"], "ar": "كلمة kind صفة."}, {"q": "To get the noun of the word \"teach\", we add the suffix _____.", "ans": "-er", "wrong": ["-ist", "-ed", "-ly"], "ar": "لنحصل على اسم من الفعل teach، نضيف المقطع -er."}, {"q": "We form the opposite of \"kind\" when we add the prefix _____.", "ans": "un-", "wrong": ["re-", "im-", "dis-"], "ar": "نكوّن عكس kind بإضافة البادئة un-."}, {"q": "The synonym of the word \"succeed\" is _____.", "ans": "pass", "wrong": ["check", "reply", "invent"], "ar": "مرادف succeed هو pass، أي ينجح."}, {"q": "The antonym of the word \"safe\" is _____.", "ans": "dangerous", "wrong": ["hard", "difficult", "easy"], "ar": "عكس safe هو dangerous، أي خطير."}, {"q": "The synonym of the word \"smart\" is _____.", "ans": "intelligent", "wrong": ["stupid", "bad", "sad"], "ar": "مرادف smart هو intelligent، أي ذكي."}, {"q": "The words \"boring\" and \"interesting\" are _____.", "ans": "antonyms", "wrong": ["synonyms", "the same", "suffixes"], "ar": "كلمتا boring و interesting متضادتان."}, {"q": "Can you speak English? The word \"speak\" is a/an _____.", "ans": "verb", "wrong": ["adjective", "pronoun", "adverb"], "ar": "كلمة speak فعل."}, {"q": "The antonym of the word \"hard\" is _____.", "ans": "easy", "wrong": ["bad", "strong", "difficult"], "ar": "عكس hard هو easy، أي سهل."}, {"q": "I usually search _____ information online.", "ans": "for", "wrong": ["at", "on", "to"], "ar": "أنا عادة أبحث عن المعلومات أونلاين."}, {"q": "My parents always remind me to take breaks _____ the screen.", "ans": "from", "wrong": ["off", "by", "in"], "ar": "والداي دائما يذكرانني بأخذ استراحات من الشاشة."}, {"q": "_____ mean books you can read on a screen instead of on paper.", "ans": "eBooks", "wrong": ["Websites", "Laptops", "Messages"], "ar": "الكتب الإلكترونية هي كتب يمكنك قراءتها على الشاشة بدلا من الورق."}, {"q": "A/An _____ is a program on your phone or tablet.", "ans": "app", "wrong": ["snack", "book", "game"], "ar": "التطبيق برنامج على هاتفك أو التابلت."}, {"q": "I _____ my phone every morning.", "ans": "check", "wrong": ["checks", "checking", "checked"], "ar": "أنا أتفقد هاتفي كل صباح."}, {"q": "She _____ her tablet to do homework.", "ans": "uses", "wrong": ["use", "using", "used"], "ar": "هي تستخدم التابلت لعمل الواجب."}, {"q": "Tarek _____ messages to his friends every day.", "ans": "sends", "wrong": ["send", "sending", "sent"], "ar": "طارق يرسل رسائل لأصدقائه كل يوم."}, {"q": "We _____ to school on Fridays.", "ans": "never go", "wrong": ["never goes", "never going", "never went"], "ar": "نحن لا نذهب إلى المدرسة أبدا يوم الجمعة."}, {"q": "I _____ watch videos on my phone.", "ans": "usually", "wrong": ["never", "sometimes", "always"], "ar": "أنا عادة أشاهد الفيديوهات على هاتفي."}, {"q": "Jana is _____ late for school.", "ans": "rarely", "wrong": ["always", "usually", "often"], "ar": "جنى نادرا ما تتأخر عن المدرسة."}, {"q": "I _____ take my mobile phone to school.", "ans": "never", "wrong": ["always", "often", "usually"], "ar": "أنا لا آخذ هاتفي المحمول إلى المدرسة أبدا."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +

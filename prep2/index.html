@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2", "unit_en": "Unit 1: Gen Alpha", "unit_ar": "الوحدة الأولى: جيل ألفا", "vocab": [["Gen Alpha", "جيل ألفا"], ["generation", "جيل"], ["smartphone", "هاتف ذكي"], ["natives", "مواطنون (أصليون)"], ["identity", "هوية"], ["behavior", "سلوك"], ["cases", "حالات"], ["community", "مجتمع"], ["connections", "علاقات / اتصالات"], ["emotions", "مشاعر"], ["digital life", "الحياة الرقمية"], ["fair", "عادل"], ["fairness", "العدل"], ["journal", "دورية / يومية"], ["trend", "اتجاه عام"], ["memes", "صور ساخرة"], ["device", "جهاز"], ["screen time", "وقت الشاشة"], ["volunteer", "متطوع"], ["platform", "منصة"], ["permission", "إذن"], ["responsibility", "مسئولية"], ["creators", "مبدعون"], ["inventor", "مخترع"], ["machine", "آلة"], ["emojis", "رموز تعبيرية"], ["far apart", "بعيدا عن بعض"], ["balance", "توازن"], ["limit", "يحدّ من"], ["support", "يدعم"], ["unite", "يوحّد"], ["annoyed", "منزعج"], ["creative", "مبدع"], ["real-life", "واقعي"], ["strange", "غريب"], ["passionate", "شغوف"], ["special", "مميز"], ["in common", "مشترك"], ["curious", "فضولي"], ["connect", "يتصل"], ["download", "يحمّل"], ["include", "يشمل"], ["communicate", "يتواصل"], ["represent", "يمثل"], ["explore", "يستكشف"], ["discover", "يكتشف"], ["share", "يشارك"], ["create", "يخلق"], ["express", "يعبّر عن"], ["encourage", "يشجع"], ["wonder", "يتساءل"], ["spread", "ينتشر"], ["feel", "يشعر"], ["spend", "يقضي"], ["show", "يعرض"], ["grow", "ينمو"], ["digital", "رقمي"], ["trends", "اتجاهات"], ["stay", "يبقى"]], "questions": [{"q": "Gen Alpha children are _____ discovering new movements in their communities.", "ans": "constantly", "wrong": ["temporary", "permanent", "constant"], "ar": "أطفال جيل ألفا يكتشفون باستمرار حركات جديدة في مجتمعاتهم."}, {"q": "Nowadays, parents are trying to _____ the time their children spend using digital devices.", "ans": "limit", "wrong": ["increase", "decrease", "gain"], "ar": "في الوقت الحالي، يحاول الآباء الحد من الوقت الذي يقضيه أطفالهم في استخدام الأجهزة الرقمية."}, {"q": "Gen Alpha individuals like using technological devices to _____ their identity.", "ans": "create", "wrong": ["decrease", "degrade", "discourage"], "ar": "أفراد جيل ألفا يحبون استخدام الأجهزة التكنولوجية لخلق هويتهم."}, {"q": "Working women try hard to _____ their personal life with their work.", "ans": "balance", "wrong": ["limit", "decrease", "increase"], "ar": "السيدات العاملات يحاولن بجد تحقيق التوازن بين حياتهن الشخصية وعملهن."}, {"q": "Nowadays people use emojis to _____ their emotions.", "ans": "express", "wrong": ["limit", "extend", "exercise"], "ar": "في الوقت الحالي يستخدم الناس الرموز التعبيرية للتعبير عن مشاعرهم."}, {"q": "Gen Alpha generation should use social media _____.", "ans": "wisely", "wrong": ["foolishly", "carelessly", "quickly"], "ar": "يجب على جيل ألفا استخدام مواقع التواصل بحكمة."}, {"q": "Using social media, Gen Z and Alpha can _____ and have fun with others.", "ans": "connect", "wrong": ["contact", "correct", "contract"], "ar": "باستخدام مواقع التواصل، يستطيع جيل زد وألفا التواصل والاستمتاع مع الآخرين."}, {"q": "If people live _____, they can communicate using mobile phones.", "ans": "far apart", "wrong": ["near", "far part", "apart"], "ar": "إذا كان الناس يعيشون بعيدا عن بعض، يمكنهم التواصل بالهواتف المحمولة."}, {"q": "Gen Z and Gen Alpha are interested in the environment and treating people with _____.", "ans": "fairness", "wrong": ["fair", "careless", "carelessness"], "ar": "جيل زد وجيل ألفا مهتمان بالبيئة ومعاملة الناس بعدل."}, {"q": "People use different forms of technology to share their thoughts and _____ important issues.", "ans": "support", "wrong": ["contact", "relax", "discourage"], "ar": "يستخدم الناس أشكالا مختلفة من التكنولوجيا لمشاركة أفكارهم ودعم القضايا المهمة."}, {"q": "If people have something in common, this means they have the same ideas and _____.", "ans": "interests", "wrong": ["interest", "interesting", "interested"], "ar": "إذا كان لدى الناس شيء مشترك، فهذا يعني أن لديهم نفس الأفكار والاهتمامات."}, {"q": "The time people spend using a screen is called _____.", "ans": "screen time", "wrong": ["spare time", "free time", "waste time"], "ar": "الوقت الذي يقضيه الناس في استخدام الشاشة يسمى وقت الشاشة."}, {"q": "If you have the same ideas and interests with someone, it means you have something in _____.", "ans": "common", "wrong": ["special", "particular", "different"], "ar": "إذا كان لديك نفس الأفكار والاهتمامات مع شخص ما، فهذا يعني أن لديكما شيئا مشتركا."}, {"q": "We should treat old people _____ kindness.", "ans": "with", "wrong": ["to", "for", "in"], "ar": "يجب أن نعامل كبار السن بلطف."}, {"q": "All parents should _____ their children to study hard.", "ans": "encourage", "wrong": ["ignore", "discourage", "disconnect"], "ar": "يجب على جميع الآباء تشجيع أبنائهم على الاجتهاد في الدراسة."}, {"q": "Many parents encourage their children to use _____ skills online.", "ans": "digital", "wrong": ["interpersonal", "manual", "mechanical"], "ar": "كثير من الآباء يشجعون أبناءهم على استخدام المهارات الرقمية أونلاين."}, {"q": "Gen Alpha is a generation that is hoped to _____ the future.", "ans": "shape", "wrong": ["ship", "tape", "tip"], "ar": "جيل ألفا جيل يؤمل أن يشكل المستقبل."}, {"q": "Your identity is _____ you are.", "ans": "who", "wrong": ["where", "when", "whose"], "ar": "هويتك هي من أنت."}, {"q": "In school fairs, students present the projects they are passionate _____.", "ans": "about", "wrong": ["of", "for", "in"], "ar": "في المعارض المدرسية، يعرض الطلاب المشروعات التي هم شغوفون بها."}, {"q": "It isn't a good thing to _____ others' actions.", "ans": "laugh at", "wrong": ["laugh to", "laugh about", "laugh for"], "ar": "ليس من الجيد أن تسخر من تصرفات الآخرين."}, {"q": "Before going out, young people should ask for their parents' _____.", "ans": "permission", "wrong": ["connection", "education", "information"], "ar": "قبل الخروج، يجب أن يطلب الشباب الإذن من والديهم."}, {"q": "A blog is an online journal or _____ where someone writes regularly about a certain topic.", "ans": "website", "wrong": ["app", "emoji", "trend"], "ar": "المدونة يومية إلكترونية أو موقع يكتب فيه شخص بانتظام عن موضوع معين."}, {"q": "_____ are small digital images used to express emotions or ideas in electronic messages.", "ans": "Emojis", "wrong": ["Sites", "Websites", "Photos"], "ar": "الرموز التعبيرية صور رقمية صغيرة تستخدم للتعبير عن المشاعر أو الأفكار في الرسائل الإلكترونية."}, {"q": "We can use the expression \"In my opinion\" to explain our ideas _____ when talking to others.", "ans": "clearly", "wrong": ["cleanly", "carelessly", "rudely"], "ar": "يمكننا استخدام العبارة In my opinion لشرح أفكارنا بوضوح عند الحديث مع الآخرين."}, {"q": "We should put our mobiles _____ during meals and before bedtime.", "ans": "away", "wrong": ["in", "out", "for"], "ar": "يجب أن نبعد هواتفنا المحمولة أثناء الوجبات وقبل النوم."}, {"q": "Spending too much time on digital devices can be _____.", "ans": "unhealthy", "wrong": ["untidy", "unhappy", "unclear"], "ar": "قضاء وقت طويل جدا على الأجهزة الرقمية قد يكون غير صحي."}, {"q": "We should learn how to find a _____ between our screen time and family life.", "ans": "balance", "wrong": ["solution", "jobs", "connect"], "ar": "يجب أن نتعلم كيف نجد توازنا بين وقت الشاشة والحياة الأسرية."}, {"q": "In \"My brother is excited as we are travelling to Alex\", the word \"excited\" is a/an _____.", "ans": "adjective", "wrong": ["verb", "pronoun", "adverb"], "ar": "في جملة My brother is excited، كلمة excited صفة."}, {"q": "To get the noun of the word \"invent\", we add the suffix _____.", "ans": "-or", "wrong": ["-ist", "-er", "-ed"], "ar": "لنحصل على اسم من الفعل invent، نضيف المقطع -or."}, {"q": "We form the opposite of \"healthy\" when we add the prefix _____.", "ans": "un-", "wrong": ["re-", "im-", "dis-"], "ar": "نكوّن عكس healthy بإضافة البادئة un-."}, {"q": "The synonym of the word \"popular\" is _____.", "ans": "common", "wrong": ["different", "unavailable", "unusual"], "ar": "مرادف popular هو common، أي شائع."}, {"q": "The antonym of the word \"modern\" is _____.", "ans": "outdated", "wrong": ["updated", "new", "wonderful"], "ar": "عكس modern هو outdated، أي قديم."}, {"q": "To get the adjective of the word \"digit\", we add the suffix _____.", "ans": "-al", "wrong": ["-ive", "-able", "-ous"], "ar": "لنحصل على صفة من الكلمة digit، نضيف المقطع -al."}, {"q": "The synonym of the word \"annoyed\" is _____.", "ans": "upset", "wrong": ["stupid", "intelligent", "happy"], "ar": "مرادف annoyed هو upset، أي منزعج."}, {"q": "The words \"powerful\" and \"weak\" are _____.", "ans": "antonyms", "wrong": ["synonyms", "the same", "suffixes"], "ar": "كلمتا powerful و weak متضادتان."}, {"q": "We add the suffix _____ to get the noun from the verb \"enjoy\".", "ans": "-ment", "wrong": ["-ion", "-ity", "-ness"], "ar": "لنحصل على اسم من الفعل enjoy نضيف المقطع -ment."}, {"q": "We add the suffix _____ to get the noun from the verb \"connect\".", "ans": "-ion", "wrong": ["-ment", "-ness", "-ity"], "ar": "لنحصل على اسم من الفعل connect نضيف المقطع -ion."}, {"q": "We use the suffix _____ to change the adjective \"creative\" to a noun.", "ans": "-ity", "wrong": ["-ion", "-ment", "-ness"], "ar": "لتحويل الصفة creative إلى اسم نستخدم المقطع -ity."}, {"q": "This book is very useful. The synonym of \"useful\" is _____.", "ans": "helpful", "wrong": ["useless", "harmful", "helpless"], "ar": "مرادف useful هو helpful، أي مفيد."}, {"q": "They are _____ their homework now.", "ans": "doing", "wrong": ["do", "does", "done"], "ar": "هم يعملون واجبهم الآن."}, {"q": "He _____ a new movie next Friday. He has already bought the tickets.", "ans": "will watch", "wrong": ["watch", "is watching", "watches"], "ar": "هو سوف يشاهد فيلما جديدا يوم الجمعة القادمة."}, {"q": "We _____ camping next Friday.", "ans": "are going", "wrong": ["go", "went", "are gone"], "ar": "نحن ذاهبون للتخييم يوم الجمعة القادمة."}, {"q": "Look! They _____ memes with their friends.", "ans": "are sharing", "wrong": ["share", "shares", "shared"], "ar": "انظر! هم يتشاركون الصور الساخرة مع أصدقائهم."}, {"q": "I _____ my homework online at the moment.", "ans": "am doing", "wrong": ["do", "does", "did"], "ar": "أنا أعمل واجبي أونلاين في هذه اللحظة."}, {"q": "Heba _____ social media now.", "ans": "is using", "wrong": ["used", "uses", "use"], "ar": "هبة تستخدم مواقع التواصل الآن."}, {"q": "Right now, Ahmed _____ short videos.", "ans": "is watching", "wrong": ["watches", "watch", "watched"], "ar": "أحمد يشاهد الفيديوهات القصيرة الآن."}, {"q": "Nadia _____ to help her neighbors.", "ans": "volunteers", "wrong": ["volunteer", "volunteering", "volunteered"], "ar": "نادية تتطوع لمساعدة جيرانها."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +

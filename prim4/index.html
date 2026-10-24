@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4", "unit_en": "Unit 1: The Five Senses", "unit_ar": "الوحدة الأولى: الحواس الخمس", "vocab": [["senses", "حواس"], ["taste", "تذوق"], ["smell", "شم"], ["hearing", "سمع"], ["sight", "إبصار"], ["touch", "لمس"], ["tongue", "لسان"], ["nose", "أنف"], ["eyes", "عينين"], ["ears", "أذنين"], ["hands", "يدين"], ["amazing", "مدهش"], ["delicious", "لذيذ"], ["garden", "حديقة"], ["smoke", "دخان"], ["fire", "حريق"], ["loud", "مرتفع الصوت"], ["noise", "ضوضاء"], ["share", "يشارك"], ["hungry", "جائع"], ["greedy", "طماع"], ["market", "سوق"], ["restaurant", "مطعم"], ["coins", "عملات"], ["money", "نقود"], ["food", "طعام"], ["yummy", "لذيذ"], ["meal", "وجبة"], ["soup", "حساء"], ["characters", "الشخصيات"], ["setting", "الزمن والمكان"], ["plot", "الحبكة"], ["climax", "الذروة"], ["daily", "يومي"], ["routine", "عمل يومي"], ["life", "حياة"], ["wake up", "تستيقظ"], ["drink water", "يشرب الماء"], ["do exercise", "يتدرب"], ["play sports", "يلعب رياضة"], ["brush her teeth", "تفرش أسنانها"], ["do homework", "يعمل الواجب"], ["grow vegetables", "يزرع خضروات"], ["eat vegetables", "يأكل خضروات"], ["take a shower", "يأخذ دش"], ["go to bed", "يذهب للفراش"], ["healthy", "صحي"], ["habits", "عادات"], ["energy", "طاقة"], ["fruit", "فاكهة"], ["vitamins", "فيتامينات"], ["mind", "عقل"], ["owner", "مالك"], ["jingling", "رنين"], ["understand", "يفهم"], ["sing", "يغني"], ["know", "يعرف"], ["see", "يرى"], ["grow", "يزرع"], ["sleep", "ينام"], ["buy", "يشتري"], ["pay", "يدفع"], ["help", "يساعد"], ["learn", "يتعلم"], ["use", "يستخدم"], ["practice", "يمارس"], ["follow", "يتبع"], ["walk", "يمشي"], ["laugh", "يضحك"], ["study", "يدرس"]], "questions": [{"q": "Our _____ help us stay safe and learn.", "ans": "senses", "wrong": ["books", "garden", "toys"], "ar": "حواسنا تساعدنا على البقاء آمنين والتعلم."}, {"q": "I can _____ delicious food with my tongue.", "ans": "taste", "wrong": ["see", "touch", "hear"], "ar": "أستطيع أن أتذوق الطعام اللذيذ بلساني."}, {"q": "Sleeping early keeps me _____.", "ans": "healthy", "wrong": ["unhealthy", "late", "tired"], "ar": "النوم المبكر يحافظ على صحتي."}, {"q": "Cars don't _____ quickly in the morning.", "ans": "move", "wrong": ["moved", "moving", "moves"], "ar": "السيارات لا تتحرك بسرعة في الصباح."}, {"q": "They _____ at the park every week.", "ans": "play", "wrong": ["plays", "playing", "running"], "ar": "هم يلعبون في الحديقة كل أسبوع."}, {"q": "Ali _____ water every morning.", "ans": "drinks", "wrong": ["drink", "drinking", "are drinking"], "ar": "علي يشرب الماء كل صباح."}, {"q": "If we smell smoke, we know there's a _____.", "ans": "fire", "wrong": ["tree", "flower", "bird"], "ar": "إذا شممنا رائحة دخان، نعرف أن هناك حريقا."}, {"q": "We _____ the teacher's voice in class.", "ans": "hear", "wrong": ["see", "taste", "smell"], "ar": "نسمع صوت المعلم في الفصل."}, {"q": "She _____ her backpack every day.", "ans": "carries", "wrong": ["carry", "carried", "carrying"], "ar": "هي تحمل حقيبتها كل يوم."}, {"q": "They _____ the books in the morning.", "ans": "read", "wrong": ["to read", "reading", "reads"], "ar": "هم يقرؤون الكتب في الصباح."}, {"q": "Sarah _____ for 9 hours every night.", "ans": "sleeps", "wrong": ["slept", "sleeping", "wakes"], "ar": "سارة تنام ٩ ساعات كل ليلة."}, {"q": "Healthy lunch helps children feel _____.", "ans": "strong", "wrong": ["sad", "tired", "sleepy"], "ar": "الغداء الصحي يساعد الأطفال على الشعور بالقوة."}, {"q": "A healthy lunch may have chicken, vegetables, fruit, and _____.", "ans": "rice", "wrong": ["water", "pizza", "candy"], "ar": "قد يحتوي الغداء الصحي على الدجاج والخضروات والفاكهة والأرز."}, {"q": "My grandfather _____ coffee in the morning.", "ans": "drinks", "wrong": ["drink", "drinking", "drank"], "ar": "جدي يشرب القهوة في الصباح."}, {"q": "Salma and I _____ the school bus every morning.", "ans": "take", "wrong": ["takes", "taking", "took"], "ar": "سلمى وأنا نركب حافلة المدرسة كل صباح."}, {"q": "We _____ our hands before eating.", "ans": "wash", "wrong": ["washes", "washing", "washed"], "ar": "نغسل أيدينا قبل الأكل."}, {"q": "Does he _____ to work every day?", "ans": "walk", "wrong": ["walks", "walking", "walked"], "ar": "هل يمشي إلى العمل كل يوم؟"}, {"q": "Hana _____ fruit every day.", "ans": "eats", "wrong": ["eat", "eating", "ate"], "ar": "هنا تأكل الفاكهة كل يوم."}, {"q": "Sarah _____ early at 6:00 a.m.", "ans": "wakes up", "wrong": ["wake up", "waking up", "woke up"], "ar": "سارة تستيقظ مبكرا في الساعة ٦ صباحا."}, {"q": "She _____ her teeth.", "ans": "brushes", "wrong": ["brush", "brushing", "brushed"], "ar": "هي تفرش أسنانها."}, {"q": "She _____ too many sweets.", "ans": "doesn't eat", "wrong": ["don't eat", "eats", "eating"], "ar": "هي لا تأكل الكثير من الحلويات."}, {"q": "At break time, Youssef _____ with his friends.", "ans": "plays", "wrong": ["play", "playing", "played"], "ar": "في وقت الفسحة، يلعب يوسف مع أصدقائه."}, {"q": "Youssef lives in a big _____.", "ans": "house", "wrong": ["school", "garden", "car"], "ar": "يوسف يعيش في منزل كبير."}, {"q": "Youssef learns science and _____.", "ans": "English", "wrong": ["math", "art", "history"], "ar": "يوسف يتعلم العلوم والإنجليزي."}, {"q": "Youssef goes to school at _____.", "ans": "7:30", "wrong": ["8:00", "9:00", "7:00"], "ar": "يوسف يذهب إلى المدرسة في الساعة ٧:٣٠."}, {"q": "In the evening, Youssef _____.", "ans": "reads a story", "wrong": ["plays football", "sleeps early", "eats breakfast"], "ar": "في المساء، يقرأ يوسف قصة."}, {"q": "I _____ with my eyes.", "ans": "see", "wrong": ["hear", "smell", "taste"], "ar": "أنا أرى بعيني."}, {"q": "I _____ with my ears.", "ans": "hear", "wrong": ["see", "smell", "touch"], "ar": "أنا أسمع بأذني."}, {"q": "I _____ the flowers with my nose.", "ans": "smell", "wrong": ["taste", "hear", "touch"], "ar": "أنا أشم الزهور بأنفي."}, {"q": "I _____ with my tongue.", "ans": "taste", "wrong": ["see", "hear", "touch"], "ar": "أنا أتذوق بلساني."}, {"q": "I _____ with my hands.", "ans": "touch", "wrong": ["smell", "see", "hear"], "ar": "أنا ألمس بيدي."}, {"q": "The time and place of the story is the _____.", "ans": "setting", "wrong": ["plot", "climax", "ending"], "ar": "الزمن والمكان في القصة هما الإعداد."}, {"q": "The most exciting part of the story is the _____.", "ans": "climax", "wrong": ["beginning", "ending", "problem"], "ar": "أكثر جزء مثير في القصة هو الذروة."}, {"q": "The problem is solved in the _____.", "ans": "ending", "wrong": ["beginning", "middle", "problem"], "ar": "تُحل المشكلة في النهاية."}, {"q": "Characters are the people or animals in a _____.", "ans": "story", "wrong": ["game", "photo", "song"], "ar": "الشخصيات هي الأشخاص أو الحيوانات في القصة."}, {"q": "Having a _____ routine is important.", "ans": "daily", "wrong": ["night", "weekly", "sleepy"], "ar": "أن يكون لديك عمل يومي مهم."}, {"q": "I have a healthy _____, including milk and fruit.", "ans": "breakfast", "wrong": ["lunch", "dinner", "house"], "ar": "أتناول فطورا صحيا يشمل الحليب والفاكهة."}, {"q": "Sarah is a healthy 10-year-old _____.", "ans": "girl", "wrong": ["boy", "cat", "car"], "ar": "سارة فتاة صحية عمرها ١٠ سنوات."}, {"q": "She _____ healthy food and drinks water.", "ans": "eats", "wrong": ["eat", "eating", "ate"], "ar": "هي تأكل طعاما صحيا وتشرب الماء."}, {"q": "She _____ sports with her friends.", "ans": "plays", "wrong": ["play", "playing", "played"], "ar": "هي تلعب الرياضة مع صديقاتها."}, {"q": "She _____ to bed early.", "ans": "goes", "wrong": ["go", "going", "went"], "ar": "هي تذهب إلى الفراش مبكرا."}, {"q": "Samir can hear the birds in the garden. He sees _____ flying near the flowers.", "ans": "butterflies", "wrong": ["flowers", "birds", "trees"], "ar": "سمير يسمع الطيور في الحديقة. وهو يرى الفراشات تطير قرب الزهور."}, {"q": "Our senses help us _____ the world around us.", "ans": "understand", "wrong": ["understands", "understood", "understanding"], "ar": "حواسنا تساعدنا على فهم العالم من حولنا."}, {"q": "I can _____ the colorful butterflies!", "ans": "see", "wrong": ["hear", "smell", "touch"], "ar": "أستطيع أن أرى الفراشات الملونة!"}, {"q": "I can _____ birds singing!", "ans": "hear", "wrong": ["see", "smell", "taste"], "ar": "أستطيع أن أسمع الطيور تغرد!"}, {"q": "They _____ English and music lessons.", "ans": "have", "wrong": ["has", "having", "had"], "ar": "لديهم حصص الإنجليزي والموسيقى."}, {"q": "Ms. Mona is their _____.", "ans": "teacher", "wrong": ["student", "driver", "doctor"], "ar": "الآنسة منى هي معلمتهم."}, {"q": "They play in the playground at _____ time.", "ans": "break", "wrong": ["lunch", "class", "home"], "ar": "يلعبون في ساحة اللعب وقت الفسحة."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +

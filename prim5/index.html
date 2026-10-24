@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5", "unit_en": "Unit 1: Food, Nature and Culture", "unit_ar": "الوحدة الأولى: الطعام والطبيعة والثقافة", "vocab": [["water weeds", "حشائش مائية"], ["Nile River", "نهر النيل"], ["insects", "حشرات"], ["hunt", "يصطاد"], ["crocodile", "تمساح"], ["dangerous", "خطير"], ["home", "وطن / منزل"], ["animals", "حيوانات"], ["fish", "سمك"], ["plants", "نباتات"], ["birds", "طيور"], ["role", "دور"], ["people", "الناس"], ["creatures", "مخلوقات"], ["tiny", "صغير جدا"], ["scary", "مخيف"], ["amazing", "مدهش"], ["safe", "آمن"], ["lion", "أسد"], ["elephant", "فيل"], ["giraffe", "زرافة"], ["camel", "جمل"], ["snake", "ثعبان"], ["fox", "ثعلب"], ["turtle", "سلحفاة"], ["leaves", "أوراق الشجر"], ["moral", "درس مستفاد"], ["queens", "ملكات"], ["garden", "حديقة"], ["slowly", "ببطء"], ["friends", "أصدقاء"], ["delicious", "لذيذ"], ["dark", "مظلم"], ["special", "مميز"], ["main", "رئيسي"], ["weak", "ضعيف"], ["first", "أولا"], ["then", "ثم"], ["next", "التالي"], ["after that", "بعد ذلك"], ["finally", "في النهاية"], ["Koshari", "كشري"], ["ingredients", "مكونات"], ["lentils", "عدس"], ["flavor", "نكهة"], ["spices", "توابل"], ["bowl", "سلطانية"], ["pot", "إناء"], ["cup", "فنجان"], ["chickpeas", "الحمص"], ["rice", "أرز"], ["pasta", "مكرونة"], ["sauce", "صلصة"], ["yummy", "لذيذ"], ["protect", "يحمي"], ["survive", "ينجو"], ["live", "يعيش"], ["water", "يروي"], ["prepare", "يجهز"], ["pour", "يصب"], ["flow", "يتدفق"], ["fry", "يقلي"], ["add", "يضيف"], ["eat", "يأكل"], ["know", "يعرف"], ["come", "يأتي"], ["find", "يجد"], ["make", "يصنع"], ["meet", "يقابل"], ["give", "يعطي"], ["hide", "يخبئ"]], "questions": [{"q": "_____ live in the desert.", "ans": "Camels", "wrong": ["Lions", "Giraffes", "Elephants"], "ar": "الجمال تعيش في الصحراء."}, {"q": "_____ give us fruit or shade to sit in.", "ans": "Trees", "wrong": ["Plastic", "Air", "Sea"], "ar": "الأشجار تعطينا الفاكهة والظل نجلس فيه."}, {"q": "He _____ watches TV at night.", "ans": "doesn't", "wrong": ["isn't", "don't", "never"], "ar": "هو لا يشاهد التلفاز ليلا."}, {"q": "My brother never _____ me with housework.", "ans": "helps", "wrong": ["help", "helped", "helping"], "ar": "أخي لا يساعدني أبدا في الأعمال المنزلية."}, {"q": "Small fish in the Nile eat _____.", "ans": "insects", "wrong": ["water plants", "birds", "tiny creatures"], "ar": "السمك الصغير في النيل يأكل الحشرات."}, {"q": "Crocodiles are called the _____ of the Nile.", "ans": "kings", "wrong": ["guards", "hunters", "leaders"], "ar": "التماسيح تسمى ملوك النيل."}, {"q": "Desert animals rarely _____ food.", "ans": "find", "wrong": ["finds", "finding", "found"], "ar": "حيوانات الصحراء نادرا ما تجد الطعام."}, {"q": "Camels _____ live in rivers.", "ans": "never", "wrong": ["always", "often"], "ar": "الجمال لا تعيش أبدا في الأنهار."}, {"q": "Huge crocodiles are _____.", "ans": "scary", "wrong": ["small", "beautiful"], "ar": "التماسيح الضخمة مخيفة."}, {"q": "The kings of the Nile are _____.", "ans": "crocodiles", "wrong": ["small fish", "birds", "insects"], "ar": "ملوك النيل هم التماسيح."}, {"q": "Animals help nature stay in _____.", "ans": "balance", "wrong": ["trouble", "danger", "water"], "ar": "الحيوانات تساعد الطبيعة على البقاء في توازن."}, {"q": "Birds _____ in the sky.", "ans": "fly", "wrong": ["flies", "flying", "flew"], "ar": "الطيور تطير في السماء."}, {"q": "She doesn't _____ to school on Fridays.", "ans": "go", "wrong": ["goes", "going", "went"], "ar": "هي لا تذهب إلى المدرسة يوم الجمعة."}, {"q": "Snakes _____ eat plants.", "ans": "never", "wrong": ["always", "usually", "sometimes"], "ar": "الثعابين لا تأكل النباتات أبدا."}, {"q": "Tom _____ a big apple tree in his garden.", "ans": "loved", "wrong": ["love", "loves", "loving"], "ar": "توم كان يحب شجرة تفاح كبيرة في حديقته."}, {"q": "Koshari is a _____ Egyptian meal.", "ans": "tasty", "wrong": ["scary", "dark"], "ar": "الكشري وجبة مصرية لذيذة."}, {"q": "Camels _____ plants to stay alive.", "ans": "eat", "wrong": ["eats", "eating", "ate"], "ar": "الجمال تأكل النباتات لتبقى على قيد الحياة."}, {"q": "Some animals _____ under rocks to stay cool.", "ans": "hide", "wrong": ["hides", "hiding", "hid"], "ar": "بعض الحيوانات تختبئ تحت الصخور لتبقى باردة."}, {"q": "Owls come out at _____ when it is cooler.", "ans": "night", "wrong": ["morning", "afternoon"], "ar": "البوم يخرج ليلا عندما يكون الجو أبرد."}, {"q": "Each animal plays an important _____ in the river.", "ans": "role", "wrong": ["meal", "road", "rock"], "ar": "كل حيوان يلعب دورا مهما في النهر."}, {"q": "Lizards eat insects to get _____.", "ans": "energy", "wrong": ["water", "rocks", "sand"], "ar": "السحالي تأكل الحشرات لتحصل على الطاقة."}, {"q": "Koshari _____ a traditional Egyptian food.", "ans": "is", "wrong": ["am", "are"], "ar": "الكشري طعام مصري تقليدي."}, {"q": "Ahmed and Laila are near the _____.", "ans": "Nile River", "wrong": ["desert", "sea", "lake"], "ar": "أحمد وليلى بجوار نهر النيل."}, {"q": "I _____ the ingredients from the supermarket.", "ans": "buy", "wrong": ["buys", "buying", "bought"], "ar": "أنا أشتري المكونات من السوبر ماركت."}, {"q": "Crocodiles _____ fish, birds, and larger animals.", "ans": "eat", "wrong": ["eats", "eating", "ate"], "ar": "التماسيح تأكل السمك والطيور والحيوانات الأكبر."}, {"q": "We must _____ the river.", "ans": "protect", "wrong": ["protects", "protected", "protecting"], "ar": "يجب أن نحمي النهر."}, {"q": "The tree _____ healthy again.", "ans": "became", "wrong": ["become", "becomes", "becoming"], "ar": "الشجرة أصبحت صحية مرة أخرى."}, {"q": "My mother _____ Koshari every Friday.", "ans": "makes", "wrong": ["make", "made", "making"], "ar": "أمي تصنع الكشري كل يوم جمعة."}, {"q": "Snakes _____ small animals like rats or lizards.", "ans": "eat", "wrong": ["eats", "eating", "ate"], "ar": "الثعابين تأكل الحيوانات الصغيرة مثل الفئران والسحالي."}, {"q": "Some animals _____ under rocks to stay cool during the day.", "ans": "hide", "wrong": ["hides", "hiding", "hid"], "ar": "بعض الحيوانات تختبئ تحت الصخور لتبقى باردة أثناء النهار."}, {"q": "Lizards are _____ dangerous.", "ans": "sometimes", "wrong": ["always", "never"], "ar": "السحالي خطيرة أحيانا."}, {"q": "Desert animals live in a very hot _____.", "ans": "place", "wrong": ["river", "forest", "city"], "ar": "حيوانات الصحراء تعيش في مكان حار جدا."}, {"q": "Small fish eat _____ in the water.", "ans": "plants", "wrong": ["birds", "rocks", "trees"], "ar": "السمك الصغير يأكل النباتات في الماء."}, {"q": "Ahmed and Laila talk about life in the _____.", "ans": "river", "wrong": ["desert", "sea", "lake"], "ar": "أحمد وليلى يتحدثان عن الحياة في النهر."}, {"q": "Birds eat small fish, insects, and plants near the _____.", "ans": "river", "wrong": ["desert", "forest", "sea"], "ar": "الطيور تأكل السمك الصغير والحشرات والنباتات قرب النهر."}, {"q": "Big fish eat smaller fish, insects, and tiny _____ in the water.", "ans": "creatures", "wrong": ["birds", "roads", "houses"], "ar": "السمك الكبير يأكل السمك الأصغر والحشرات والمخلوقات الصغيرة في الماء."}, {"q": "Snakes eat small animals like rats or _____.", "ans": "lizards", "wrong": ["birds", "frogs", "fish"], "ar": "الثعابين تأكل الحيوانات الصغيرة مثل الفئران أو السحالي."}, {"q": "Camels eat plants to stay _____.", "ans": "strong", "wrong": ["weak", "sad", "tired"], "ar": "الجمال تأكل النباتات لتبقى قوية."}, {"q": "Tom never _____ the tree food or water.", "ans": "gave", "wrong": ["give", "gives", "giving"], "ar": "توم لم يعطِ الشجرة طعاما أو ماء أبدا."}, {"q": "Years later, the tree became weak and _____.", "ans": "sad", "wrong": ["happy", "strong", "tall"], "ar": "بعد سنوات أصبحت الشجرة ضعيفة وحزينة."}, {"q": "Tom learned the importance of _____ back.", "ans": "giving", "wrong": ["give", "gives", "gave"], "ar": "تعلم توم أهمية العطاء بالمقابل."}, {"q": "Cook rice, pasta, and lentils _____.", "ans": "separately", "wrong": ["quickly", "together", "slowly"], "ar": "اطبخ الأرز والمكرونة والعدس كل على حدة."}, {"q": "Fry chopped _____ with spices.", "ans": "garlic", "wrong": ["apples", "bananas", "chicken"], "ar": "اقلِ الثوم المفروم مع التوابل."}, {"q": "The Nile is one of the longest _____ in the world.", "ans": "rivers", "wrong": ["deserts", "mountains", "forests"], "ar": "النيل من أطول الأنهار في العالم."}, {"q": "Snakes _____ eat plants. They eat small animals.", "ans": "never", "wrong": ["always", "usually", "often"], "ar": "الثعابين لا تأكل النباتات أبدا. هي تأكل الحيوانات الصغيرة."}, {"q": "Koshari is a _____ food.", "ans": "traditional", "wrong": ["modern", "foreign", "frozen"], "ar": "الكشري طعام تقليدي."}, {"q": "Lizards eat insects, which give them _____.", "ans": "energy", "wrong": ["water", "rocks", "sand"], "ar": "السحالي تأكل الحشرات التي تمنحها الطاقة."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +

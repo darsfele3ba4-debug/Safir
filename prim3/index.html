@@ -68,13 +68,13 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .pitch{background:repeating-linear-gradient(180deg,#22a34a 0 40px,#1e9442 40px 80px)}
 .goal{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:92%;max-width:640px;height:200px;border:8px solid #fff;border-bottom:none;border-radius:6px 6px 0 0;box-shadow:0 6px 0 rgba(0,0,0,.15)}
 .net{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
-.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:3}
+.zones{position:absolute;inset:8px;display:grid;gap:8px;z-index:5}
 .zone{border:3px dashed rgba(255,255,255,.9);background:rgba(8,19,79,.55);color:#fff;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;padding:4px 6px;touch-action:manipulation;line-height:1.2;overflow-wrap:anywhere}
 .zone:hover{background:rgba(245,197,66,.6);color:var(--navy)}
 .zone.hit{background:var(--success);border-style:solid}
 .zone.miss{background:var(--danger);border-style:solid}
 .zone.right{background:rgba(22,163,74,.75);border-style:solid}
-.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.keeper{position:absolute;left:50%;top:55%;width:46px;height:78px;transform:translate(-50%,-50%);z-index:2;pointer-events:none;opacity:0}
 .k-head{position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#f1c27d;border:2px solid #000}
 .k-body{position:absolute;left:50%;top:22px;width:32px;height:38px;margin-left:-16px;border-radius:10px 10px 6px 6px;background:var(--gold);border:2px solid #000}
 .k-arms{position:absolute;left:0;top:26px;width:46px;height:10px;border-radius:6px;background:var(--gold);border:2px solid #000}
@@ -276,10 +276,6 @@ body.compact .container{margin:8px auto;padding:8px}
   </div>
 </header>
 
-<div class="navbar" id="navbar">
-  <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
-  <select id="unitSel" aria-label="اختر يونت أخرى"></select>
-</div>
 
 <div class="container">
 
@@ -388,7 +384,7 @@ body.compact .container{margin:8px auto;padding:8px}
 const GRADE = {"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3", "unit_en": "Unit 1: Let's Learn Together", "unit_ar": "الوحدة الأولى: لنتعلم معا", "vocab": [["hello", "أهلا"], ["good morning", "صباح الخير"], ["fine", "بخير"], ["how", "كيف"], ["nice", "جميل"], ["meet", "يقابل"], ["see", "يرى"], ["later", "لاحقا"], ["goodbye", "إلى اللقاء"], ["name", "اسم"], ["Egypt", "مصر"], ["year", "سنة"], ["primary", "ابتدائي"], ["friend", "صديق"], ["thank you", "شكرا"], ["too", "أيضا"], ["classroom", "فصل"], ["rules", "قواعد"], ["hand", "يد"], ["listen", "يستمع"], ["carefully", "بحرص"], ["sit down", "يجلس"], ["keep", "يحافظ على"], ["clean", "نظيف"], ["shout", "يصرخ"], ["bathroom", "توالت"], ["run", "يجري"], ["speak", "يتحدث"], ["teacher", "مدرس"], ["kind", "لطيف"], ["what", "ما"], ["when", "متى"], ["where", "أين"], ["whale", "حوت"], ["white", "أبيض"], ["live", "يعيش"], ["ocean", "محيط"], ["shirt", "قميص"], ["late", "متأخر"], ["tall", "طويل"], ["short", "قصير"], ["curly", "مجعد"], ["hair", "شعر"], ["straight", "مستقيم"], ["brown", "بني"], ["eyes", "عيون"], ["funny", "مرح"], ["shy", "خجول"], ["friendly", "ودود"], ["helpful", "متعاون"], ["polite", "مؤدب"], ["laugh", "يضحك"], ["help", "يساعد"], ["toy", "لعبة"], ["smile", "ابتسامة"], ["student", "طالب"], ["wake up", "يستيقظ"], ["brush", "يفرش"], ["teeth", "أسنان"], ["get dressed", "يرتدي ملابسه"], ["bed", "سرير"], ["breakfast", "إفطار"], ["school", "مدرسة"], ["homework", "واجب منزلي"], ["sleep", "ينام"], ["read", "يقرأ"], ["write", "يكتب"], ["eat", "يأكل"], ["watch", "يشاهد"], ["learn", "يتعلم"], ["home", "منزل"], ["study", "يدرس"], ["every day", "كل يوم"], ["tidy", "مرتب"], ["what time", "ما الوقت؟"]], "questions": [{"q": "Nice to _____ you, Noura.", "ans": "meet", "wrong": ["say", "eat"], "ar": "تشرفت بمقابلتك يا نورا."}, {"q": "_____ are you? – I'm fine, thank you.", "ans": "How", "wrong": ["What", "When"], "ar": "كيف حالك؟ أنا بخير، شكرا."}, {"q": "I _____ eight years old.", "ans": "am", "wrong": ["is", "are"], "ar": "أنا عمري ثماني سنوات."}, {"q": "What is your _____? – I'm Dina.", "ans": "name", "wrong": ["old", "number"], "ar": "ما اسمك؟ أنا دينا."}, {"q": "My name _____ Laila.", "ans": "is", "wrong": ["am", "are"], "ar": "اسمي ليلى."}, {"q": "I _____ my friends at school.", "ans": "see", "wrong": ["eat", "buy"], "ar": "أنا أرى أصدقائي في المدرسة."}, {"q": "Adam's teachers are _____.", "ans": "kind", "wrong": ["bad", "sad"], "ar": "معلمو آدم لطفاء."}, {"q": "Adam meets Eyad in the _____.", "ans": "morning", "wrong": ["evening", "afternoon"], "ar": "يقابل آدم إياد في الصباح."}, {"q": "I can _____ many animals in the zoo.", "ans": "see", "wrong": ["thank", "run"], "ar": "أستطيع أن أرى حيوانات كثيرة في حديقة الحيوان."}, {"q": "Hello! My _____ is Amal.", "ans": "name", "wrong": ["later", "old"], "ar": "أهلا! اسمي أمل."}, {"q": "How _____ are you? – I am 8 years old.", "ans": "old", "wrong": ["name", "friend"], "ar": "كم عمرك؟ أنا عمري ثماني سنوات."}, {"q": "In the morning, we say _____ to our friends.", "ans": "good morning", "wrong": ["goodbye", "good night"], "ar": "في الصباح نقول صباح الخير لأصدقائنا."}, {"q": "My name is _____.", "ans": "Youssef", "wrong": ["goodbye", "years"], "ar": "اسمي يوسف."}, {"q": "I'm _____ years old.", "ans": "nine", "wrong": ["Lina", "meet"], "ar": "عمري تسع سنوات."}, {"q": "I'm from _____.", "ans": "Egypt", "wrong": ["Noha", "Heba"], "ar": "أنا من مصر."}, {"q": "_____ at the board.", "ans": "Look", "wrong": ["Looks", "Looking"], "ar": "انظر إلى السبورة."}, {"q": "_____ your homework.", "ans": "Write", "wrong": ["Writes", "Writing"], "ar": "اكتب واجبك."}, {"q": "_____ sleep in class.", "ans": "Don't", "wrong": ["Aren't", "Isn't"], "ar": "لا تنم في الفصل."}, {"q": "_____ down, please.", "ans": "Sit", "wrong": ["Sitting", "To sit"], "ar": "اجلس، من فضلك."}, {"q": "Don't _____ in the classroom.", "ans": "eat", "wrong": ["eating", "eats"], "ar": "لا تأكل في الفصل."}, {"q": "_____ to your teachers carefully.", "ans": "Listen", "wrong": ["Listening", "Listened"], "ar": "استمع إلى معلميك بعناية."}, {"q": "_____ your classroom clean.", "ans": "Keep", "wrong": ["Keeping", "Keeps"], "ar": "حافظ على نظافة فصلك."}, {"q": "_____ your hand when the teacher asks.", "ans": "Raise", "wrong": ["To raise", "Raised"], "ar": "ارفع يدك عندما يسأل المعلم."}, {"q": "When the teacher talks, you should _____ carefully.", "ans": "listen", "wrong": ["eat", "shout"], "ar": "عندما يتحدث المعلم، يجب أن تستمع بعناية."}, {"q": "Don't _____ in class.", "ans": "shout", "wrong": ["listen", "write"], "ar": "لا تصرخ في الفصل."}, {"q": "_____ down when class starts.", "ans": "Stand", "wrong": ["Run", "Sit"], "ar": "قف عندما يبدأ الفصل."}, {"q": "If you want to answer, _____ your hand.", "ans": "raise", "wrong": ["run", "close"], "ar": "إذا أردت أن تجيب، ارفع يدك."}, {"q": "Be _____ to your classmates.", "ans": "kind", "wrong": ["bad", "angry"], "ar": "كن لطيفا مع زملائك."}, {"q": "_____ your book on page 6.", "ans": "Open", "wrong": ["Sit", "Stand"], "ar": "افتح كتابك على صفحة ٦."}, {"q": "Nader has _____ eyes.", "ans": "brown", "wrong": ["short", "curly"], "ar": "عينا نادر بنيتان."}, {"q": "Nader is tall. He isn't _____.", "ans": "short", "wrong": ["straight", "curly"], "ar": "نادر طويل. هو ليس قصيرا."}, {"q": "Laila has curly _____.", "ans": "hair", "wrong": ["nose", "face"], "ar": "ليلى لديها شعر مجعد."}, {"q": "I'm _____. I make my friends laugh.", "ans": "funny", "wrong": ["shy", "angry"], "ar": "أنا مرح. أجعل أصدقائي يضحكون."}, {"q": "She is _____. She helps her friends do their homework.", "ans": "helpful", "wrong": ["loud", "short"], "ar": "هي متعاونة. تساعد صديقاتها في واجباتهن."}, {"q": "He is _____. He says hello to everyone.", "ans": "friendly", "wrong": ["straight", "brown"], "ar": "هو ودود. يلقي التحية على الجميع."}, {"q": "My mother _____ very kind.", "ans": "is", "wrong": ["are", "am"], "ar": "أمي لطيفة جدا."}, {"q": "I _____ Egyptian.", "ans": "am", "wrong": ["is", "are"], "ar": "أنا مصري."}, {"q": "I _____ brown eyes.", "ans": "have", "wrong": ["am", "has"], "ar": "عندي عينان بنيتان."}, {"q": "He _____ my brother.", "ans": "is", "wrong": ["am", "are"], "ar": "هو أخي."}, {"q": "She _____ green eyes.", "ans": "has", "wrong": ["have", "is"], "ar": "لديها عينان خضراوان."}, {"q": "We _____ in the classroom.", "ans": "are", "wrong": ["am", "is"], "ar": "نحن في الفصل."}, {"q": "He _____ my dad.", "ans": "is", "wrong": ["am", "are"], "ar": "هو أبي."}, {"q": "You _____ very kind.", "ans": "are", "wrong": ["am", "is"], "ar": "أنت لطيف جدا."}, {"q": "She _____ my mom.", "ans": "is", "wrong": ["am", "are"], "ar": "هي أمي."}, {"q": "They _____ my friends.", "ans": "are", "wrong": ["am", "is"], "ar": "هم أصدقائي."}, {"q": "He _____ friendly.", "ans": "is", "wrong": ["are", "am"], "ar": "هو ودود."}, {"q": "He _____ brown hair.", "ans": "has", "wrong": ["have", "is"], "ar": "لديه شعر بني."}, {"q": "He looks _____ after watching a sad movie.", "ans": "sad", "wrong": ["excited", "shy"], "ar": "يبدو حزينا بعد مشاهدة فيلم حزين."}, {"q": "I _____ books in my free time.", "ans": "read", "wrong": ["wake", "run"], "ar": "أقرأ الكتب في وقت فراغي."}, {"q": "I like to _____ cartoons on TV.", "ans": "watch", "wrong": ["wash", "draw"], "ar": "أحب أن أشاهد الرسوم المتحركة في التلفاز."}, {"q": "Please, _____ your name on the paper.", "ans": "write", "wrong": ["do", "play"], "ar": "من فضلك، اكتب اسمك على الورقة."}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
-const SOLO_N = 15;
+const SOLO_N = 30;
 const TUG_N = 15;
 const TUG_WIN = 5;
 const GAME_NAMES = { 1: 'ضربات جزاء', 2: 'مين هيكسب المليون', 3: 'صياد السمك', 4: 'ماريو', 5: 'حرامي الذهب', 6: 'شد الحبل' };
@@ -470,7 +466,56 @@ function buildGrammarBank() {
     };
   });
 }
-const BANK = { vocab: buildVocabBank(), grammar: buildGrammarBank() };
+/* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+const POOL_N = 60;
+function vocabItemA(en, ar) {
+  const wa = pickDistractors(VOCAB_AR, ar, 3);
+  return {
+    kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
+    full: esc(en) + ' = <b>' + esc(ar) + '</b>',
+    parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
+  };
+}
+function vocabItemB(en, ar) {
+  const we = pickDistractors(VOCAB_EN, en, 3);
+  return {
+    kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    options: shuffle([en, ...we]), answer: en, optLang: 'en',
+    full: '<b>' + esc(en) + '</b> = ' + esc(ar),
+    parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
+  };
+}
+/* 60 vocabulary questions: one per word, alternating direction; a second pass fills any gap */
+function makeVocabSet(reverse) {
+  const out = [];
+  const ord = GRADE.vocab.map((_, i) => i);
+  if (reverse) ord.reverse();
+  for (const pass of [0, 1]) {
+    ord.forEach(i => {
+      if (out.length >= POOL_N) return;
+      const [en, ar] = GRADE.vocab[i];
+      out.push((i + pass) % 2 === 0 ? vocabItemA(en, ar) : vocabItemB(en, ar));
+    });
+  }
+  return out.slice(0, POOL_N);
+}
+/* grammar section: its own questions, topped up with vocabulary questions to 60 */
+function makeGrammarSet() {
+  return buildGrammarBank().concat(makeVocabSet(true)).slice(0, POOL_N);
+}
+/* 30 prize levels, from 100 up to 1,000,000 */
+function prizeLadder() {
+  const out = [];
+  for (let i = 0; i < 30; i++) {
+    let v = 100 * Math.pow(10000, i / 29);
+    v = v < 1000 ? Math.round(v / 10) * 10 : Math.round(v / 100) * 100;
+    out.push(v);
+  }
+  out[29] = 1000000;
+  return out;
+}
+const BANK = { vocab: makeVocabSet(false), grammar: makeGrammarSet() };
 const SECTION_LABEL = { grammar: 'قواعد', vocab: 'مفردات' };
 
 /* ============ State ============ */
@@ -520,10 +565,6 @@ function setupNav() {
   $('hdr-grade').innerText = GRADE.label_ar + ' · ' + GRADE.label_en;
   $('hdr-unit').innerText = GRADE.unit_en;
   $('sel-sub').innerText = GRADE.unit_ar + ' — ' + GRADE.unit_en;
-  const sel = $('unitSel');
-  sel.innerHTML = '<option value="">📚 اختار يونت تانية</option>' + ALL_GRADES.map(g =>
-    '<option value="' + g.slug + '"' + (g.slug === GRADE.slug ? ' selected' : '') + '>' + esc(g.label_ar) + ' — ' + esc(g.label_en) + '</option>').join('');
-  sel.onchange = () => { if (sel.value) location.href = '../' + sel.value + '/index.html'; };
 }
 function chooseSection(s) {
   currentSection = s;
@@ -667,7 +708,7 @@ const GAMES = {
       z.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
       z.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
       q.options.forEach(o => { const b = document.createElement('button'); b.className = 'zone'; b.textContent = o; onTap(b, () => pick(o, b)); z.appendChild(b); });
-      const k = $('keeper'); k.style.transition = 'none'; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
+      const k = $('keeper'); k.style.transition = 'none'; k.style.opacity = 0; k.style.left = '50%'; k.style.top = '55%'; k.style.transform = 'translate(-50%,-50%)';
       const ball = $('ball'); ball.style.transition = 'none'; ball.style.transform = 'translate(-50%,0)';
     },
     react(ok, opt, el, q) {
@@ -683,6 +724,7 @@ const GAMES = {
       const target = ok ? (n - 1 - i) : i, col = target % cols, row = Math.floor(target / cols);
       const leftPct = cols === 1 ? 50 : (cols === 2 ? (col ? 74 : 26) : [17, 50, 83][col]);
       later(() => {
+        k.style.opacity = 1;
         k.style.transition = 'all .4s ease-out';
         k.style.left = leftPct + '%'; k.style.top = (n === 4 ? (row ? 66 : 38) : 52) + '%';
         k.style.transform = 'translate(-50%,-50%) rotate(' + (leftPct < 50 ? -70 : leftPct > 50 ? 70 : 0) + 'deg)';
@@ -696,7 +738,7 @@ const GAMES = {
   /* 2. Millionaire */
   2: {
     init(st) {
-      const base = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+      const base = prizeLadder();
       G.prizes = base.slice(-SOLO_N);
       G.ll = { f: true, a: true };
       st.innerHTML = '<div class="mil"><div class="mil-bar"><div><button class="ll" id="ll50">50:50</button><button class="ll" id="llAud" title="سؤال الفصل"><i class="fas fa-users"></i></button></div>' +
