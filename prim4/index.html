@@ -58,6 +58,15 @@ header{background:linear-gradient(135deg,#050c3a,#0d1d7a 50%,#2340d6);color:#fff
 .fb{min-height:52px;border-radius:12px;padding:8px 12px;margin-bottom:10px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:#f8fafc;color:#94a3b8;font-size:1rem;text-align:center}
 .fb.ok{background:#dcfce7;color:#166534}
 .fb.bad{background:#fee2e2;color:#991b1b}
+.q-ar,.tq-ar{font-family:'Cairo',sans-serif;font-size:1.02rem;font-weight:700;color:#334155;background:#f1f5f9;border-radius:10px;padding:6px 10px;margin:-4px 0 8px;text-align:center;min-height:0}
+.q-ar:empty,.tq-ar:empty{display:none}
+.rule-card{background:#f8fafc;border:2px solid #c7d2fe;border-radius:16px;padding:14px;margin:12px 0;text-align:right}
+.rule-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rule-head h3{color:var(--blue);font-size:1.1rem}
+.rule-en{margin:8px 0;font-weight:600;color:#0f172a;line-height:1.6}
+.rule-ar{margin:6px 0 10px;font-family:'Cairo',sans-serif;color:#334155;line-height:1.8}
+.rule-ex{background:#fff;border-radius:10px;padding:8px 10px;margin-top:6px;border-right:4px solid var(--gold)}
+.rule-ex span{color:#475569;font-family:'Cairo',sans-serif}
 .fb .full{color:var(--dark);font-weight:600}
 .fb .full b{color:var(--success);text-decoration:underline}
 .btn-next{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:6px 14px;font-weight:700;cursor:pointer}
@@ -297,6 +306,7 @@ body.compact .container{margin:8px auto;padding:8px}
     <p id="menu-desc"></p>
     <div class="toolbar">
       <button class="btn btn-gold btn-read" id="read-toggle" onclick="toggleRead()"><i class="fas fa-volume-up"></i> <span>القراءة الصوتية: مفعلة</span></button>
+      <button class="btn btn-gold" id="rules-btn" style="display:none" onclick="openRules()"><i class="fas fa-book"></i> شرح القواعد</button>
       <button class="btn btn-blue" onclick="openWords()"><i class="fas fa-headphones"></i> استمع للكلمات والجمل</button>
     </div>
     <div class="menu-grid">
@@ -315,6 +325,13 @@ body.compact .container{margin:8px auto;padding:8px}
     <p>اضغط على أي كلمة أو جملة عشان تسمعها بالإنجليزي والعربي.</p>
     <div class="chips" id="chips"></div>
     <div id="sentences"></div>
+  </div>
+
+  <div id="rules-screen" class="screen">
+    <h2>📖 شرح القواعد قبل الأسئلة</h2>
+    <p>اقرأ الشرح، واسمعه بالإنجليزي والعربي بالزرار، وبعدين اضغط "ابدأ الأسئلة".</p>
+    <div id="rules-body"></div>
+    <div class="results-actions"><button class="btn btn-gold" onclick="closeRules()"><i class="fas fa-play"></i> ابدأ الأسئلة</button></div>
   </div>
 
   <div id="tug-setup" class="screen">
@@ -338,6 +355,7 @@ body.compact .container{margin:8px auto;padding:8px}
     </div>
     <div id="soloWrap">
       <div class="qbox"><button class="spk" onclick="repeatQ()" title="اسمع السؤال"><i class="fas fa-volume-up"></i></button><div class="q-text" id="q-text"></div></div>
+      <div class="q-ar" id="q-ar"></div>
       <div class="fb" id="fb">&nbsp;</div>
       <div id="stage"></div>
     </div>
@@ -384,7 +402,7 @@ body.compact .container{margin:8px auto;padding:8px}
 
 <script>
 /* ============ Data injected per grade ============ */
-const GRADE = {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4", "unit_en": "Unit 1: The Five Senses", "unit_ar": "الوحدة الأولى: الحواس الخمس", "vocab": [["senses", "حواس"], ["taste", "تذوق"], ["smell", "شم"], ["hearing", "سمع"], ["sight", "إبصار"], ["touch", "لمس"], ["tongue", "لسان"], ["nose", "أنف"], ["eyes", "عينين"], ["ears", "أذنين"], ["hands", "يدين"], ["amazing", "مدهش"], ["delicious", "لذيذ"], ["garden", "حديقة"], ["smoke", "دخان"], ["fire", "حريق"], ["loud", "مرتفع الصوت"], ["noise", "ضوضاء"], ["share", "يشارك"], ["hungry", "جائع"], ["greedy", "طماع"], ["market", "سوق"], ["restaurant", "مطعم"], ["coins", "عملات"], ["money", "نقود"], ["food", "طعام"], ["yummy", "لذيذ"], ["meal", "وجبة"], ["soup", "حساء"], ["characters", "الشخصيات"], ["setting", "الزمن والمكان"], ["plot", "الحبكة"], ["climax", "الذروة"], ["daily", "يومي"], ["routine", "عمل يومي"], ["life", "حياة"], ["wake up", "تستيقظ"], ["drink water", "يشرب الماء"], ["do exercise", "يتدرب"], ["play sports", "يلعب رياضة"], ["brush her teeth", "تفرش أسنانها"], ["do homework", "يعمل الواجب"], ["grow vegetables", "يزرع خضروات"], ["eat vegetables", "يأكل خضروات"], ["take a shower", "يأخذ دش"], ["go to bed", "يذهب للفراش"], ["healthy", "صحي"], ["habits", "عادات"], ["energy", "طاقة"], ["fruit", "فاكهة"], ["vitamins", "فيتامينات"], ["mind", "عقل"], ["owner", "مالك"], ["jingling", "رنين"], ["understand", "يفهم"], ["sing", "يغني"], ["know", "يعرف"], ["see", "يرى"], ["grow", "يزرع"], ["sleep", "ينام"], ["buy", "يشتري"], ["pay", "يدفع"], ["help", "يساعد"], ["learn", "يتعلم"], ["use", "يستخدم"], ["practice", "يمارس"], ["follow", "يتبع"], ["walk", "يمشي"], ["laugh", "يضحك"], ["study", "يدرس"]], "questions": [{"q": "Our _____ help us stay safe and learn.", "ans": "senses", "wrong": ["books", "garden", "toys"], "ar": "حواسنا تساعدنا على البقاء آمنين والتعلم."}, {"q": "I can _____ delicious food with my tongue.", "ans": "taste", "wrong": ["see", "touch", "hear"], "ar": "أستطيع أن أتذوق الطعام اللذيذ بلساني."}, {"q": "Sleeping early keeps me _____.", "ans": "healthy", "wrong": ["unhealthy", "late", "tired"], "ar": "النوم المبكر يحافظ على صحتي."}, {"q": "Cars don't _____ quickly in the morning.", "ans": "move", "wrong": ["moved", "moving", "moves"], "ar": "السيارات لا تتحرك بسرعة في الصباح."}, {"q": "They _____ at the park every week.", "ans": "play", "wrong": ["plays", "playing", "running"], "ar": "هم يلعبون في الحديقة كل أسبوع."}, {"q": "Ali _____ water every morning.", "ans": "drinks", "wrong": ["drink", "drinking", "are drinking"], "ar": "علي يشرب الماء كل صباح."}, {"q": "If we smell smoke, we know there's a _____.", "ans": "fire", "wrong": ["tree", "flower", "bird"], "ar": "إذا شممنا رائحة دخان، نعرف أن هناك حريقا."}, {"q": "We _____ the teacher's voice in class.", "ans": "hear", "wrong": ["see", "taste", "smell"], "ar": "نسمع صوت المعلم في الفصل."}, {"q": "She _____ her backpack every day.", "ans": "carries", "wrong": ["carry", "carried", "carrying"], "ar": "هي تحمل حقيبتها كل يوم."}, {"q": "They _____ the books in the morning.", "ans": "read", "wrong": ["to read", "reading", "reads"], "ar": "هم يقرؤون الكتب في الصباح."}, {"q": "Sarah _____ for 9 hours every night.", "ans": "sleeps", "wrong": ["slept", "sleeping", "wakes"], "ar": "سارة تنام ٩ ساعات كل ليلة."}, {"q": "Healthy lunch helps children feel _____.", "ans": "strong", "wrong": ["sad", "tired", "sleepy"], "ar": "الغداء الصحي يساعد الأطفال على الشعور بالقوة."}, {"q": "A healthy lunch may have chicken, vegetables, fruit, and _____.", "ans": "rice", "wrong": ["water", "pizza", "candy"], "ar": "قد يحتوي الغداء الصحي على الدجاج والخضروات والفاكهة والأرز."}, {"q": "My grandfather _____ coffee in the morning.", "ans": "drinks", "wrong": ["drink", "drinking", "drank"], "ar": "جدي يشرب القهوة في الصباح."}, {"q": "Salma and I _____ the school bus every morning.", "ans": "take", "wrong": ["takes", "taking", "took"], "ar": "سلمى وأنا نركب حافلة المدرسة كل صباح."}, {"q": "We _____ our hands before eating.", "ans": "wash", "wrong": ["washes", "washing", "washed"], "ar": "نغسل أيدينا قبل الأكل."}, {"q": "Does he _____ to work every day?", "ans": "walk", "wrong": ["walks", "walking", "walked"], "ar": "هل يمشي إلى العمل كل يوم؟"}, {"q": "Hana _____ fruit every day.", "ans": "eats", "wrong": ["eat", "eating", "ate"], "ar": "هنا تأكل الفاكهة كل يوم."}, {"q": "Sarah _____ early at 6:00 a.m.", "ans": "wakes up", "wrong": ["wake up", "waking up", "woke up"], "ar": "سارة تستيقظ مبكرا في الساعة ٦ صباحا."}, {"q": "She _____ her teeth.", "ans": "brushes", "wrong": ["brush", "brushing", "brushed"], "ar": "هي تفرش أسنانها."}, {"q": "She _____ too many sweets.", "ans": "doesn't eat", "wrong": ["don't eat", "eats", "eating"], "ar": "هي لا تأكل الكثير من الحلويات."}, {"q": "At break time, Youssef _____ with his friends.", "ans": "plays", "wrong": ["play", "playing", "played"], "ar": "في وقت الفسحة، يلعب يوسف مع أصدقائه."}, {"q": "Youssef lives in a big _____.", "ans": "house", "wrong": ["school", "garden", "car"], "ar": "يوسف يعيش في منزل كبير."}, {"q": "Youssef learns science and _____.", "ans": "English", "wrong": ["math", "art", "history"], "ar": "يوسف يتعلم العلوم والإنجليزي."}, {"q": "Youssef goes to school at _____.", "ans": "7:30", "wrong": ["8:00", "9:00", "7:00"], "ar": "يوسف يذهب إلى المدرسة في الساعة ٧:٣٠."}, {"q": "In the evening, Youssef _____.", "ans": "reads a story", "wrong": ["plays football", "sleeps early", "eats breakfast"], "ar": "في المساء، يقرأ يوسف قصة."}, {"q": "I _____ with my eyes.", "ans": "see", "wrong": ["hear", "smell", "taste"], "ar": "أنا أرى بعيني."}, {"q": "I _____ with my ears.", "ans": "hear", "wrong": ["see", "smell", "touch"], "ar": "أنا أسمع بأذني."}, {"q": "I _____ the flowers with my nose.", "ans": "smell", "wrong": ["taste", "hear", "touch"], "ar": "أنا أشم الزهور بأنفي."}, {"q": "I _____ with my tongue.", "ans": "taste", "wrong": ["see", "hear", "touch"], "ar": "أنا أتذوق بلساني."}, {"q": "I _____ with my hands.", "ans": "touch", "wrong": ["smell", "see", "hear"], "ar": "أنا ألمس بيدي."}, {"q": "The time and place of the story is the _____.", "ans": "setting", "wrong": ["plot", "climax", "ending"], "ar": "الزمن والمكان في القصة هما الإعداد."}, {"q": "The most exciting part of the story is the _____.", "ans": "climax", "wrong": ["beginning", "ending", "problem"], "ar": "أكثر جزء مثير في القصة هو الذروة."}, {"q": "The problem is solved in the _____.", "ans": "ending", "wrong": ["beginning", "middle", "problem"], "ar": "تُحل المشكلة في النهاية."}, {"q": "Characters are the people or animals in a _____.", "ans": "story", "wrong": ["game", "photo", "song"], "ar": "الشخصيات هي الأشخاص أو الحيوانات في القصة."}, {"q": "Having a _____ routine is important.", "ans": "daily", "wrong": ["night", "weekly", "sleepy"], "ar": "أن يكون لديك عمل يومي مهم."}, {"q": "I have a healthy _____, including milk and fruit.", "ans": "breakfast", "wrong": ["lunch", "dinner", "house"], "ar": "أتناول فطورا صحيا يشمل الحليب والفاكهة."}, {"q": "Sarah is a healthy 10-year-old _____.", "ans": "girl", "wrong": ["boy", "cat", "car"], "ar": "سارة فتاة صحية عمرها ١٠ سنوات."}, {"q": "She _____ healthy food and drinks water.", "ans": "eats", "wrong": ["eat", "eating", "ate"], "ar": "هي تأكل طعاما صحيا وتشرب الماء."}, {"q": "She _____ sports with her friends.", "ans": "plays", "wrong": ["play", "playing", "played"], "ar": "هي تلعب الرياضة مع صديقاتها."}, {"q": "She _____ to bed early.", "ans": "goes", "wrong": ["go", "going", "went"], "ar": "هي تذهب إلى الفراش مبكرا."}, {"q": "Samir can hear the birds in the garden. He sees _____ flying near the flowers.", "ans": "butterflies", "wrong": ["flowers", "birds", "trees"], "ar": "سمير يسمع الطيور في الحديقة. وهو يرى الفراشات تطير قرب الزهور."}, {"q": "Our senses help us _____ the world around us.", "ans": "understand", "wrong": ["understands", "understood", "understanding"], "ar": "حواسنا تساعدنا على فهم العالم من حولنا."}, {"q": "I can _____ the colorful butterflies!", "ans": "see", "wrong": ["hear", "smell", "touch"], "ar": "أستطيع أن أرى الفراشات الملونة!"}, {"q": "I can _____ birds singing!", "ans": "hear", "wrong": ["see", "smell", "taste"], "ar": "أستطيع أن أسمع الطيور تغرد!"}, {"q": "They _____ English and music lessons.", "ans": "have", "wrong": ["has", "having", "had"], "ar": "لديهم حصص الإنجليزي والموسيقى."}, {"q": "Ms. Mona is their _____.", "ans": "teacher", "wrong": ["student", "driver", "doctor"], "ar": "الآنسة منى هي معلمتهم."}, {"q": "They play in the playground at _____ time.", "ans": "break", "wrong": ["lunch", "class", "home"], "ar": "يلعبون في ساحة اللعب وقت الفسحة."}]};
+const GRADE = {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4", "unit_en": "Unit 1: The Five Senses", "unit_ar": "الوحدة الأولى: الحواس الخمس", "vocab": [["senses", "حواس"], ["taste", "التذوق"], ["smell", "الشم"], ["hearing", "السمع"], ["sight", "الإبصار"], ["touch", "اللمس"], ["tongue", "لسان"], ["nose", "أنف"], ["eyes", "عينين"], ["ears", "أذنين"], ["hands", "يدين"], ["amazing", "مدهش"], ["delicious", "لذيذ"], ["garden", "حديقة"], ["smoke", "دخان"], ["fire", "حريق/نار"], ["loud", "مرتفع/صاخب"], ["noise", "ضوضاء"], ["wake up", "تستيقظ"], ["drink water", "يشرب الماء"], ["do exercise", "يتدرب"], ["play sports", "يلعب رياضة"], ["brush her teeth", "تفسل أسنانها"], ["do homework", "تعمل الواجب"], ["grow vegetables", "يزرع خضروات"], ["eat vegetables", "يأكل خضروات"], ["take a shower", "ياخذ دش"], ["go to bed", "تذهب للفراش"], ["healthy", "صحي"], ["habits", "عادات"], ["energy", "طاقة"], ["fruit", "فاكهة"], ["vitamins", "فيتامينات"], ["mind", "عقل"], ["owner", "مالك"], ["jingling", "رنين"], ["share", "يشارك"], ["hungry", "جائع"], ["greedy", "طماع/جشع"], ["market", "سوق"], ["restaurant", "مطعم"], ["coins", "عملات"], ["money", "نقود"], ["food", "طعام"], ["yummy", "لذيذ"], ["meal", "وجبة"], ["soup", "حساء/شوربة"], ["Characters", "الشخصيات"], ["Setting", "الزمن والمكان"], ["Plot", "الحبكة"], ["Climax", "الذروة"], ["daily", "يومي"], ["routine", "عمل يومي"], ["life", "حياة"], ["help", "يساعد"], ["learn", "يتعلم"], ["use", "يستخدم"], ["stay", "يبقى"], ["touch", "يلمس"], ["practice", "يمارس"], ["follow", "يتبع"], ["walk", "يمشي"], ["laugh", "يضحك"], ["study", "يدرس"], ["understand", "يفهم"], ["sing", "يغني"], ["know", "يعرف"], ["smell", "يشم"], ["see", "يرى"], ["grow", "يزرع"], ["eat", "يأكل"], ["sleep", "ينام"], ["buy", "يشتري"], ["pay", "يدفع"], ["First", "أولاً"], ["Next", "بعد ذلك"], ["Then", "ثم"], ["After school", "بعد المدرسة"], ["After that", "بعد ذلك"], ["finally", "في النهاية"]], "questions": [{"q": "Our ____ help us stay safe and learn.", "ans": "senses", "wrong": ["books", "garden", "toys"], "ar": "حواسنا بتساعدنا نفضل آمنين ونتعلم.", "why_en": "Our senses help us stay safe and learn.", "why_ar": "حواسنا بتساعدنا نفضل آمنين ونتعلم."}, {"q": "I can ____ delicious food with my tongue.", "ans": "taste", "wrong": ["see", "touch", "hear"], "ar": "أقدر أتذوق الأكل اللذيذ بلساني.", "why_en": "We taste food with our tongue.", "why_ar": "بنتذوق الأكل بلساننا."}, {"q": "Sleeping early keeps me ____.", "ans": "healthy", "wrong": ["unhealthy", "late", "tired"], "ar": "النوم بدري بيخليني صحي.", "why_en": "Sleeping early keeps you healthy.", "why_ar": "النوم بدري بيخليك صحي."}, {"q": "Cars don't ____ quickly in the morning.", "ans": "move", "wrong": ["moved", "moving", "moves"], "ar": "العربيات مابتتحركش بسرعة في الصبح.", "why_en": "After 'don't' we use the base verb.", "why_ar": "بعد don't بنستخدم الفعل الأساسي."}, {"q": "They ____ at the park every week.", "ans": "play", "wrong": ["plays", "playing", "running"], "ar": "بيلعبوا في الحديقة كل أسبوع.", "why_en": "With 'they' we use the base verb.", "why_ar": "مع they بنستخدم الفعل الأساسي."}, {"q": "Ali ____ water every morning.", "ans": "drinks", "wrong": ["drink", "drinking", "are drinking"], "ar": "علي بيشرب مية كل صبح.", "why_en": "With 'Ali' (he) we add 's'.", "why_ar": "مع Ali (he) بنضيف s."}, {"q": "After school, he eats his ____ with his family.", "ans": "lunch", "wrong": ["homework", "book", "shower"], "ar": "بعد المدرسة بياكل الغدا مع أسرته.", "why_en": "Lunch is the meal we eat in the middle of the day.", "why_ar": "الغدا هو الوجبة اللي بناكلها في نص النهار."}, {"q": "Then he does his ____ at his desk.", "ans": "homework", "wrong": ["breakfast", "book", "shower"], "ar": "بعدين بيعمل واجبه على مكتبه.", "why_en": "We do homework.", "why_ar": "بنعمل الواجب."}, {"q": "He reads a ____ before dinner.", "ans": "book", "wrong": ["lunch", "shower", "breakfast"], "ar": "بيقرأ كتاب قبل العشا.", "why_en": "We read a book.", "why_ar": "بنقرأ كتاب."}, {"q": "Before bed, he takes a ____ and gets ready to sleep.", "ans": "shower", "wrong": ["breakfast", "lunch", "homework"], "ar": "قبل النوم بياخد دش ويجهز ينام.", "why_en": "We take a shower.", "why_ar": "بناخد دش."}, {"q": "Youssef goes to school at ____.", "ans": "7:30", "wrong": ["8:00", "9:00", "7:00"], "ar": "يوسف بيروح المدرسة الساعة 7:30.", "why_en": "The text says he goes to school at 7:30 a.m.", "why_ar": "النص بيقول إنه بيروح المدرسة الساعة 7:30 الصبح."}, {"q": "In the evening, Youssef ____.", "ans": "reads a story", "wrong": ["plays football", "sleeps early", "eats breakfast"], "ar": "بالليل يوسف بيقرأ قصة.", "why_en": "The text says he reads a story before bed.", "why_ar": "النص بيقول إنه بيقرأ قصة قبل النوم."}, {"q": "What subjects does Youssef love?", "ans": "science and English", "wrong": ["math and music", "art and history", "sports and music"], "ar": "يوسف بيحب مادتي العلوم والإنجليزي.", "why_en": "He says: I love science and English.", "why_ar": "قال: I love science and English."}, {"q": "What does he do at break time?", "ans": "plays with his friends", "wrong": ["reads a story", "eats breakfast", "sleeps"], "ar": "بيلعب مع أصحابه وقت الفسحة.", "why_en": "He plays with his friends at break time.", "why_ar": "بيلعب مع أصحابه وقت الفسحة."}, {"q": "Where does Youssef live?", "ans": "in a big house with his family", "wrong": ["in a small flat", "in a village", "on a farm"], "ar": "يوسف بيعيش في بيت كبير مع أسرته.", "why_en": "He lives in a big house with his family.", "why_ar": "بيعيش في بيت كبير مع أسرته."}, {"q": "I ____ (wash) my hands before I eat.", "ans": "wash", "wrong": ["washes", "washed", "washing"], "ar": "أنا بغسل إيديا قبل ما آكل.", "why_en": "With 'I' we use the base verb.", "why_ar": "مع I بنستخدم الفعل الأساسي."}, {"q": "Hana ____ (eat) fruit every day.", "ans": "eats", "wrong": ["eat", "ate", "eating"], "ar": "هنا بتاكل فاكهة كل يوم.", "why_en": "With 'Hana' (she) we add 's'.", "why_ar": "مع Hana (she) بنضيف s."}, {"q": "My brother ____ (drink) milk every day.", "ans": "drinks", "wrong": ["drink", "drank", "drinking"], "ar": "أخويا بيشرب لبن كل يوم.", "why_en": "With 'my brother' (he) we add 's'.", "why_ar": "مع my brother (he) بنضيف s."}, {"q": "We ____ (not/go) to school on Friday.", "ans": "don't go", "wrong": ["doesn't go", "not go", "goes"], "ar": "احنا مابنروحش المدرسة يوم الجمعة.", "why_en": "With 'we' we use don't + base verb.", "why_ar": "مع we بنستخدم don't + الفعل الأساسي."}, {"q": "The students go to school every morning.", "ans": "True", "wrong": ["False"], "ar": "الطلاب بيروحوا المدرسة كل صبح.", "why_en": "The text says they go to school every morning.", "why_ar": "النص بيقول إنهم بيروحوا المدرسة كل صبح."}, {"q": "They have English and music lessons.", "ans": "False", "wrong": ["True"], "ar": "عندهم حصص إنجليزي وحصص رياضيات.", "why_en": "The text says they have English and math lessons, not music.", "why_ar": "النص بيقول إن عندهم إنجليزي ورياضيات، مش موسيقى."}, {"q": "They play in the playground at break time.", "ans": "True", "wrong": ["False"], "ar": "بيلعبوا في الملعب وقت الفسحة.", "why_en": "At break time they play in the playground.", "why_ar": "وقت الفسحة بيلعبوا في الملعب."}, {"q": "Ms. Mona is their friend.", "ans": "False", "wrong": ["True"], "ar": "الأستاذة منى مدرستهم مش صاحبتهم.", "why_en": "The text says Ms. Mona is their teacher.", "why_ar": "النص بيقول إن الأستاذة منى مدرستهم."}, {"q": "Our ____ help us stay safe and learn.", "ans": "senses", "wrong": ["books", "neighbors", "toys"], "ar": "حواسنا بتساعدنا نفضل آمنين ونتعلم.", "why_en": "Senses help us stay safe and learn.", "why_ar": "الحواس بتساعدنا نفضل آمنين ونتعلم."}, {"q": "If we smell smoke, we know there's a ____.", "ans": "fire", "wrong": ["tree", "flower", "bird"], "ar": "لو شمينا ريحة دخان، نعرف إن فيه حريق.", "why_en": "Smoke means there is a fire.", "why_ar": "الدخان معناه إن فيه حريق."}, {"q": "We ____ the teacher's voice in class.", "ans": "hear", "wrong": ["see", "taste", "smell"], "ar": "احنا بنسمع صوت المدرس في الفصل.", "why_en": "We hear with our ears.", "why_ar": "بنسمع بالودان."}, {"q": "She ____ her backpack every day.", "ans": "carries", "wrong": ["carry", "carried", "carrying"], "ar": "هي بتشيل شنطتها كل يوم.", "why_en": "With 'she' we add 's'.", "why_ar": "مع she بنضيف s."}, {"q": "They ____ the books in the morning.", "ans": "read", "wrong": ["to read", "reading", "reads"], "ar": "بيقروا الكتب الصبح.", "why_en": "With 'they' we use the base verb.", "why_ar": "مع they بنستخدم الفعل الأساسي."}, {"q": "Sarah ____ for 9 hours every night.", "ans": "sleeps", "wrong": ["slept", "sleeping", "sleep"], "ar": "سارة بتنام 9 ساعات كل ليلة.", "why_en": "With 'Sarah' (she) we add 's'.", "why_ar": "مع Sarah (she) بنضيف s."}, {"q": "Samir can hear the birds in the garden. He sees ____ flying near the flowers.", "ans": "butterflies", "wrong": ["flowers", "eat", "smells"], "ar": "سمير بيسمع العصافير في الجنينة. وبيشوف فراشات طايرة قريب من الورد.", "why_en": "Butterflies fly near the flowers.", "why_ar": "الفراشات بتطير قريب من الورد."}, {"q": "He can ____ their beautiful wings.", "ans": "hear", "wrong": ["eat", "flowers", "butterflies"], "ar": "هو بيقدر يسمع أجنحتها الجميلة.", "why_en": "The box word for this gap is 'hear'.", "why_ar": "الكلمة اللي في الفراغ دي هي hear."}, {"q": "His sister ____ the sweet flowers in the air.", "ans": "smells", "wrong": ["hear", "eat", "butterflies"], "ar": "أخته بتشم ريحة الورد الحلو في الجو.", "why_en": "She smells the sweet flowers.", "why_ar": "بتشم ريحة الورد الحلو."}, {"q": "His sister smells the sweet ____ in the air.", "ans": "flowers", "wrong": ["butterflies", "hear", "eat"], "ar": "أخته بتشم ريحة الورد الحلو في الجو.", "why_en": "We smell flowers.", "why_ar": "بنشم ريحة الورد."}, {"q": "A healthy lunch may have chicken, vegetables, fruit, and ____.", "ans": "rice", "wrong": ["water", "pizza", "candy"], "ar": "الغدا الصحي ممكن يكون فيه فراخ وخضار وفاكهة وأرز.", "why_en": "The text lists rice as a healthy food.", "why_ar": "النص بيذكر الأرز كأكل صحي."}, {"q": "A healthy lunch helps children feel ____.", "ans": "strong", "wrong": ["sad", "tired", "sleepy"], "ar": "الغدا الصحي بيخلي العيال حاسين بقوة.", "why_en": "The text says healthy lunch helps children feel strong.", "why_ar": "النص بيقول إن الغدا الصحي بيخلي الأطفال يحسوا بالقوة."}, {"q": "What shouldn't you eat too much of?", "ans": "sweets or fried food", "wrong": ["vegetables and fruit", "water", "rice"], "ar": "مينفعش تاكل حلويات أو أكل مقلي كتير.", "why_en": "The text says you shouldn't eat too many sweets or fried food.", "why_ar": "النص بيقول إنك مايصحش تاكل حلويات أو مقلي كتير."}, {"q": "How does healthy food help you at school?", "ans": "It helps you run, play, and study better.", "wrong": ["It makes you sleepy.", "It makes you sad.", "It stops you from playing."], "ar": "الأكل الصحي بيساعدك تجري وتلعب وتذاكر أحسن.", "why_en": "The text says you will be able to run, play, and study better.", "why_ar": "النص بيقول إنك هتقدر تجري وتلعب وتذاكر أحسن."}, {"q": "My grandfather ____ (drink) coffee in the morning.", "ans": "drinks", "wrong": ["drink", "drank", "drinking"], "ar": "جدي بيشرب قهوة الصبح.", "why_en": "With 'my grandfather' (he) we add 's'.", "why_ar": "مع my grandfather (he) بنضيف s."}, {"q": "We ____ (wash) our hands before eating.", "ans": "wash", "wrong": ["washes", "washed", "washing"], "ar": "احنا بنغسل إيدينا قبل الأكل.", "why_en": "With 'we' we use the base verb.", "why_ar": "مع we بنستخدم الفعل الأساسي."}, {"q": "Salma and I ____ (take) the school bus every morning.", "ans": "take", "wrong": ["takes", "took", "taking"], "ar": "سلمى وأنا بناخد الأتوبيس المدرسي كل صبح.", "why_en": "With 'Salma and I' (we) we use the base verb.", "why_ar": "مع Salma and I (we) بنستخدم الفعل الأساسي."}, {"q": "Does he ____ (walk) to work every day?", "ans": "walk", "wrong": ["walks", "walking", "walked"], "ar": "هو بيمشي للشغل كل يوم؟", "why_en": "After 'Does he' we use the base verb.", "why_ar": "بعد Does he بنستخدم الفعل الأساسي."}], "rules": [{"title_en": "Present simple tense", "title_ar": "زمن المضارع البسيط", "en": "We use the present simple to talk about daily habits and routines. With I, you, we, they we use the base verb (eat, play). With he, she, it we add 's' or 'es' (eats, goes).", "ar": "بنستخدم المضارع البسيط عشان نتكلم عن العادات والروتين اليومي. مع I/you/we/they بنستخدم الفعل الأساسي. ومع he/she/it بنضيف s أو es.", "examples": [{"en": "I eat fruit every day.", "ar": "أنا باكل فاكهة كل يوم."}, {"en": "He plays football every day.", "ar": "هو بيلعب كورة كل يوم."}]}, {"title_en": "Negative: don't and doesn't", "title_ar": "النفي: don't و doesn't", "en": "In negative sentences we use don't with I, you, we, they and doesn't with he, she, it. After don't or doesn't we use the base verb.", "ar": "في الجمل المنفية بنستخدم don't مع I/you/we/they، و doesn't مع he/she/it. وبعدهم بنستخدم الفعل الأساسي.", "examples": [{"en": "She doesn't eat too many sweets.", "ar": "هي مابتاكلش حلويات كتير."}, {"en": "I don't live in Cairo.", "ar": "أنا مابعيشش في القاهرة."}]}]};
 const ALL_GRADES = [{"slug": "prim3", "label_ar": "الصف الثالث الابتدائي", "label_en": "Primary 3"}, {"slug": "prim4", "label_ar": "الصف الرابع الابتدائي", "label_en": "Primary 4"}, {"slug": "prim5", "label_ar": "الصف الخامس الابتدائي", "label_en": "Primary 5"}, {"slug": "prim6", "label_ar": "الصف السادس الابتدائي", "label_en": "Primary 6"}, {"slug": "prep1", "label_ar": "الصف الأول الإعدادي", "label_en": "Prep 1"}, {"slug": "prep2", "label_ar": "الصف الثاني الإعدادي", "label_en": "Prep 2"}, {"slug": "prep3", "label_ar": "الصف الثالث الإعدادي", "label_en": "Prep 3"}];
 const WA_NUMBER = '201280246557';
 const SOLO_N = 30;
@@ -398,8 +416,12 @@ let enVoice = null, arVoice = null, speechToken = 0;
 function loadVoices() {
   if (!HAS_TTS) return;
   const vs = speechSynthesis.getVoices();
-  enVoice = vs.find(v => /^en[-_](US|GB)/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
-  arVoice = vs.find(v => /^ar/i.test(v.lang)) || null;
+  const FEMALE = /female|woman|samantha|zira|susan|aria|jenny|hazel|karen|victoria|moira|tessa|natasha|google us english|sara|salma|zariyah/i;
+  const MALE = /male|david|mark|guy|daniel|george|james|hamed|maged|naayf|tarik/i;
+  const en = vs.filter(v => /^en/i.test(v.lang));
+  enVoice = en.find(v => FEMALE.test(v.name)) || en.find(v => !MALE.test(v.name)) || en[0] || null;
+  const ar = vs.filter(v => /^ar/i.test(v.lang));
+  arVoice = ar.find(v => MALE.test(v.name)) || ar.find(v => !FEMALE.test(v.name)) || ar[0] || null;
 }
 if (HAS_TTS) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 function stopSpeech() { speechToken++; try { if (HAS_TTS) speechSynthesis.cancel(); } catch (e) {} }
@@ -462,7 +484,7 @@ function buildGrammarBank() {
     const opts = shuffle([item.ans, ...item.wrong]);
     const en = item.q.replace(/_{3,}/, 'blank');
     return {
-      kind: 'grammar', display: item.q.replace(/_{3,}/, '_____'),
+      kind: 'grammar', ar: item.ar || '', why: whyParts(item), display: item.q.replace(/_{3,}/, '_____'),
       options: opts, answer: item.ans, optLang: 'en',
       full: esc(item.q).replace(/_{3,}/, '<b>' + esc(item.ans) + '</b>'),
       parts: [{ l: 'en', t: en.replace(/blank/, 'blank') }, { l: 'en', t: 'Choose: ' + opts.join(', ') }, { l: 'ar', t: item.ar }]
@@ -470,11 +492,42 @@ function buildGrammarBank() {
   });
 }
 /* Each section has a pool of exactly 60 distinct questions; every game draws 30 of them at random */
+/* spoken explanation of an answer: English (female voice) then Arabic (male voice) */
+function whyParts(item) {
+  const p = [];
+  if (item.why_en) p.push({ l: 'en', t: item.why_en });
+  if (item.why_ar) p.push({ l: 'ar', t: item.why_ar });
+  return p;
+}
+/* grammar rules screen */
+function ruleParts(r) {
+  const p = [{ l: 'en', t: r.title_en }, { l: 'en', t: r.en }];
+  r.examples.forEach(ex => p.push({ l: 'en', t: ex.en }));
+  p.push({ l: 'ar', t: r.title_ar }, { l: 'ar', t: r.ar });
+  r.examples.forEach(ex => p.push({ l: 'ar', t: ex.ar }));
+  return p;
+}
+function openRules() {
+  const body = $('rules-body'); body.innerHTML = '';
+  const rules = GRADE.rules || [];
+  if (!rules.length) body.innerHTML = '<p>مفيش شرح للقواعد في الوحدة دي.</p>';
+  rules.forEach(r => {
+    const d = document.createElement('div'); d.className = 'rule-card';
+    d.innerHTML = '<div class="rule-head"><h3>' + esc(r.title_ar) + ' · ' + esc(r.title_en) + '</h3><button class="spk sm"><i class="fas fa-volume-up"></i></button></div>' +
+      '<p class="rule-en">' + esc(r.en) + '</p><p class="rule-ar">' + esc(r.ar) + '</p>' +
+      r.examples.map(ex => '<div class="rule-ex"><b>' + esc(ex.en) + '</b><br><span>' + esc(ex.ar) + '</span></div>').join('');
+    d.querySelector('button').onclick = () => speakSeq(ruleParts(r));
+    body.appendChild(d);
+  });
+  switchScreen('rules-screen');
+}
+function closeRules() { stopSpeech(); switchScreen('main-menu'); }
 const POOL_N = Infinity; /* no cap: every word of the unit is used, in both directions */
 function vocabItemA(en, ar) {
   const wa = pickDistractors(VOCAB_AR, ar, 3);
   return {
     kind: 'vocab', display: 'What does "' + en + '" mean?', spokenEN: 'What does ' + en + ' mean?',
+    ar: 'ما معنى ' + en + '؟', why: [{ l: 'en', t: en + ' means ' + ar + '.' }, { l: 'ar', t: en + ' معناها ' + ar + '.' }],
     options: shuffle([ar, ...wa]), answer: ar, optLang: 'ar',
     full: esc(en) + ' = <b>' + esc(ar) + '</b>',
     parts: [{ l: 'en', t: 'What does ' + en + ' mean?' }, { l: 'ar', t: 'الاختيارات: ' + [ar, ...wa].join('، ') }, { l: 'en', t: en }, { l: 'ar', t: 'معنى ' + en + ' هو ' + ar }]
@@ -484,6 +537,7 @@ function vocabItemB(en, ar) {
   const we = pickDistractors(VOCAB_EN, en, 3);
   return {
     kind: 'vocab', display: 'أي كلمة معناها "' + ar + '"؟', spokenAR: 'أي كلمة معناها ' + ar + '؟',
+    ar: '', why: [{ l: 'en', t: en + ' means ' + ar + '.' }, { l: 'ar', t: en + ' معناها ' + ar + '.' }],
     options: shuffle([en, ...we]), answer: en, optLang: 'en',
     full: '<b>' + esc(en) + '</b> = ' + esc(ar),
     parts: [{ l: 'ar', t: 'أي كلمة معناها ' + ar + '؟' }, { l: 'en', t: 'Choose: ' + [en, ...we].join(', ') }, { l: 'en', t: en }, { l: 'ar', t: en + ' معناها ' + ar }]
@@ -573,6 +627,9 @@ function chooseSection(s) {
   currentSection = s;
   $('menu-title').innerText = s === 'grammar' ? 'أسئلة القواعد' : 'أسئلة المفردات';
   $('menu-desc').innerText = 'كل لعبة ' + SOLO_N + ' سؤال · ' + GRADE.label_ar;
+  const hasRules = s === 'grammar' && (GRADE.rules || []).length > 0;
+  $('rules-btn').style.display = hasRules ? '' : 'none';
+  if (hasRules) { openRules(); return; }
   switchScreen('main-menu');
 }
 function toggleRead() {
@@ -661,10 +718,11 @@ function nextQ() {
   $('hud-q').innerText = (G.idx + 1) + ' / ' + G.qs.length;
   $('hud-s').innerText = G.score;
   const qt = $('q-text'); qt.textContent = q.display; fitLine(qt, window.innerWidth < 600 ? 22 : 28, 14, 2);
+  $('q-ar').textContent = q.ar || '';
   const fb = $('fb'); fb.className = 'fb'; fb.innerHTML = '<span><i class="fas fa-hand-pointer"></i> اختار الإجابة الصح</span>';
   G.locked = false;
   G.game.show(q);
-  if (autoRead) later(() => speakSeq(q.parts.slice(0, 2)), 300);
+  if (autoRead) later(() => speakSeq(q.parts), 300);
 }
 function repeatQ() { if (G && G.mode === 'solo' && G.qs[G.idx]) speakSeq(G.qs[G.idx].parts); }
 function pick(opt, el) {
@@ -689,8 +747,8 @@ function pick(opt, el) {
   nb.onclick = () => { G.idx++; nextQ(); };
   fb.appendChild(nb);
   G.game.react(ok, opt, el, q);
-  if (autoRead) later(() => speakSeq(ok ? [{ l: 'ar', t: 'أحسنت!' }] : q.parts), 500);
-  later(() => { G.idx++; nextQ(); }, ok ? 2600 : 5600);
+  if (autoRead) later(() => speakSeq(q.why && q.why.length ? q.why : q.parts), 500);
+  later(() => { G.idx++; nextQ(); }, ok ? 6500 : 8500);
 }
 function bigMsg(text, ok) { const m = $('bigmsg'); if (!m) return; m.textContent = text; m.className = 'big-msg show ' + (ok ? 'ok' : 'bad'); }
 function hideMsg() { const m = $('bigmsg'); if (m) m.className = 'big-msg'; }
@@ -1005,6 +1063,7 @@ function startTug() {
     '<div class="tug-arena">' + [0, 1].map(i =>
       '<div class="tpanel t' + i + '" id="tp' + i + '"><div class="tp-head"><span>' + esc(names[i]) + '</span><span>سؤال <b class="tqn">1</b>/' + TUG_N + '</span></div>' +
       '<div class="tqbox"><button class="spk sm"><i class="fas fa-volume-up"></i></button><div class="tq-text"></div></div>' +
+      '<div class="tq-ar"></div>' +
       '<div class="topts"></div><div class="tfb"></div><div class="tdone"><i class="fas fa-flag-checkered" style="font-size:2.4rem"></i>خلصتوا!<small style="color:#64748b">مستنيين الفريق التاني…</small></div></div>').join('') + '</div>';
   $('game-title').innerText = '🏆 شد الحبل — ' + SECTION_LABEL[currentSection];
   switchScreen('game-screen');
@@ -1021,6 +1080,7 @@ function tugShow(t) {
   const q = t.qs[t.idx];
   p.querySelector('.tqn').innerText = t.idx + 1;
   const qt = p.querySelector('.tq-text'); qt.textContent = q.display; fitLine(qt, 20, 13, 3);
+  p.querySelector('.tq-ar').textContent = q.ar || '';
   p.querySelector('.tfb').innerHTML = '';
   const box = p.querySelector('.topts'); box.innerHTML = '';
   q.options.forEach(o => { const b = document.createElement('button'); b.className = 'topt'; b.textContent = o; onTap(b, () => tugPick(t, o, b)); box.appendChild(b); });
